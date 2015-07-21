@@ -1,0 +1,12 @@
+Package: CB
+Title: Cole Brokamp's Personal Functions
+Version: 0.1
+Authors@R: person("Cole", "Brokamp", , "cole.brokamp@gmail.com", role = c("aut", "cre"))
+Description: A collection of Cole's various functions he would rather call then retype or source every time.
+Depends: R (>= 3.1.2)
+Imports:
+		parallel,
+		XML,
+		RCurl
+License: What license is it under?
+LazyData: true
