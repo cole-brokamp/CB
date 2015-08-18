@@ -3,7 +3,6 @@
 #' This function takes a package and returns a list of its dependencies.  Good for downloading source files of packages to install on a R server where internet access is blocked.
 #' @param packs a quoted package name or list of package names
 #' @keywords CBapply
-#' @export
 #' @examples
 #' # use this to get specifically named packages and their dependencies:
 #' packages <- getPackages('pbapply')
