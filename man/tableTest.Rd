@@ -13,13 +13,14 @@ tableTest(x, group, digits.mean = 2, digits.percentage = 0)
 
 \item{digits.mean}{The mean is rounded and displayed using this many digits.}
 
-\item{digits.mean}{The percentage is rounded and displayed using this many digits.}
+\item{digits.percentage}{The percentage is rounded and displayed using this many digits.}
 }
 \description{
 This function summarizes and tests the differences of numerical and dichotomous variables only across some factor.  The summary number is either the mean of a numeric variable for the number and percentage of values that are the second of the two factors in a dichotomous variable.  Missing values are removed before the summary statistic, but the number missing is not reported. Furthermore, a p-value is reported testing the differences of the means or counts across the groups factor.  The p-value is derived from an ANOVA for continuous variables or from a chi-squared test via monte-carlo simulation using 100,000 bootstrap replicates.
 }
 \examples{
-X <- data.frame('some.continuous'=runif(300),'some.factor'=factor(rbinom(300,1,0.3)),'some.other.factor'=factor(rbinom(300,1,0.5)))
+X <- data.frame('some.continuous'=runif(300),'some.factor'=factor(rbinom(300,1,0.3)))
+X$some.other.factor <- factor(rbinom(300,1,0.5))
 tableTest(x=X$some.continuous,group=X$some.other.factor)
 tableTest(x=X$some.factor,group=X$some.other.factor)
 CBapply(X[ ,c('some.continuous','some.factor')],tableTest,group=X$some.other.factor)

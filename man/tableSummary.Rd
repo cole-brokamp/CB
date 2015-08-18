@@ -11,7 +11,7 @@ tableSummary(x, digits.mean = 2, digits.percentage = 0)
 
 \item{digits.mean}{The mean is rounded and displayed using this many digits.}
 
-\item{digits.mean}{The percentage is rounded and displayed using this many digits.}
+\item{digits.percentage}{The percentage is rounded and displayed using this many digits.}
 }
 \description{
 This function summarizes numerical and dichotomous variables only.  The summary number is either the mean of a numeric variable for the number and percentage of values that are the second of the two factors in a dichotomous variable.  Missing values are removed before the summary statistic is calculated and the numer of missing observations is also presented in the table.

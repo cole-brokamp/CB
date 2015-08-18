@@ -3,5 +3,6 @@
 export(CBapply)
 export(LatLongToFIPS)
 export(ORGetter)
+export(getPackages)
 export(tableSummary)
 export(tableTest)

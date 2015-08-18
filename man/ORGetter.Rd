@@ -10,7 +10,7 @@ ORGetter(logistic.glm, digits = 2, sig.star = TRUE,
 \arguments{
 \item{logistic.glm}{A logistic GLM R object.  If not an object of 'glm' and 'lm', it will stop with an error.}
 
-\item{digits}{Number of digits to round table to}
+\item{digits}{Number of digits to round table}
 
 \item{sig.star}{Will return an extra column with a star if the confidence interval does not contain 1. Defaults to TRUE.}
 
@@ -20,11 +20,12 @@ ORGetter(logistic.glm, digits = 2, sig.star = TRUE,
 This function returns a data.frame of the odds ratios and their 95% confidence intervals.
 }
 \examples{
-x1 <- rnorm(100)
+\dontrun{ x1 <- rnorm(100)
 x2 <- rnorm(100)
 y <- rbinom(100,1,prob=0.3)
 logistic.model <- glm(y ~ x1 + x2,family='binomial')
 ORGetter(logistic.model)
+}
 }
 \keyword{CB}
 \keyword{OddsRatio}

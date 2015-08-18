@@ -4,10 +4,11 @@
 #' @param x Vector of data which to summarize.  Should be used for numerical and dichotomous variables only.
 #' @param group The factor for which to test the x variable across.
 #' @param digits.mean The mean is rounded and displayed using this many digits.
-#' @param digits.mean The percentage is rounded and displayed using this many digits.
+#' @param digits.percentage The percentage is rounded and displayed using this many digits.
 #' @keywords CB test table
 #' @export
-#' @examples X <- data.frame('some.continuous'=runif(300),'some.factor'=factor(rbinom(300,1,0.3)),'some.other.factor'=factor(rbinom(300,1,0.5)))
+#' @examples X <- data.frame('some.continuous'=runif(300),'some.factor'=factor(rbinom(300,1,0.3)))
+#' X$some.other.factor <- factor(rbinom(300,1,0.5))
 #' tableTest(x=X$some.continuous,group=X$some.other.factor)
 #' tableTest(x=X$some.factor,group=X$some.other.factor)
 #' CBapply(X[ ,c('some.continuous','some.factor')],tableTest,group=X$some.other.factor)
