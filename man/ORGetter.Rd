@@ -4,10 +4,13 @@
 \alias{ORGetter}
 \title{Retreive Odds Ratio Table from Logistic GLM Objects}
 \usage{
-ORGetter(logistic.glm, sig.star = TRUE, show.intercept = FALSE)
+ORGetter(logistic.glm, digits = 2, sig.star = TRUE,
+  show.intercept = FALSE)
 }
 \arguments{
 \item{logistic.glm}{A logistic GLM R object.  If not an object of 'glm' and 'lm', it will stop with an error.}
+
+\item{digits}{Number of digits to round table to}
 
 \item{sig.star}{Will return an extra column with a star if the confidence interval does not contain 1. Defaults to TRUE.}
 
