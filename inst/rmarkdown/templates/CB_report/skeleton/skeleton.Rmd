@@ -1,0 +1,17 @@
+---
+title: "TITLE"
+author: "Cole Brokamp"
+date: "DATE"
+
+fontsize: 10pt
+geometry: margin=0.3in
+classoption: portrait
+
+output:
+  pdf_document:
+    fig_caption: yes
+---
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(prompt=F,comment=NA,warning=FALSE,message=FALSE,echo=FALSE,cache=FALSE)
+```

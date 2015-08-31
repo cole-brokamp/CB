@@ -1,0 +1,43 @@
+---
+title: "TITLE"
+author: "Cole Brokamp"
+date: "DATE"
+output:
+  beamer_presentation:
+    slide_level: 3
+    toc: yes
+  ioslides_presentation: default
+  slidy_presentation: default
+header-includes:
+- \institute{Department of Biostatistics and Bioinformatics \\ Department of Environmental
+  Health\\ University of Cincinnati}
+- \titlegraphic{\includegraphics[height=1.6cm]{uc_logo.png}}
+- \usetheme{default}
+- \setbeamercolor{section in head/foot}{fg=black}
+- \setbeamercolor{frametitle}{fg=red!80!black}
+- \setbeamercolor{title}{fg=red!80!black}
+- \setbeamercolor{part title}{fg=red!80!black}
+- \setbeamercolor{local structure}{fg=red!80!black}
+- \setbeamercolor{section in toc}{fg=red!80!black}
+- \beamertemplatenavigationsymbolsempty
+- \useoutertheme[subsection=false]{smoothbars}
+- \useinnertheme{circles}
+- \usepackage{graphics}
+- \usepackage{xcolor,colortbl}
+- \definecolor{Gray}{gray}{0.85}
+- \AtBeginSubsection[]{}
+- \AtBeginSection[]{}
+---
+
+# Section One
+## Section One
+
+### Slide 1
+
+### Slide 2
+
+# Section Two
+## Section Two
+
+### Slide 1
+### Slide 2
