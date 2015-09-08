@@ -3,6 +3,7 @@
 export(CBapply)
 export(LatLongToFIPS)
 export(ORGetter)
+export(SPapply)
 export(getPackages)
 export(save_pdf)
 export(tableSummary)
