@@ -10,17 +10,17 @@
 #' @export
 #'
 SPapply <- function(sp.object,FUN.,...,id.row.names=FALSE) {
+  # require(pbapply)
   stopifnot(class(sp.object) %in% c('SpatialPoints','SpatialPointsDataFrame'))
   N. <- nrow(sp.object@coords)
   FUN <- match.fun(FUN.)
-  library(pbapply)
-  pb <- startpb(0,N.)
+  pbapply::pb <- startpb(0,N.)
   out <- vector('list',N.)
   for (j in 1:N.) {
     out[[j]] <- FUN(sp.object[j, ],...)
-    setpb(pb,j)
+    pbapply::setpb(pb,j)
   }
-  close(pb)
+  pbapply::close(pb)
   out <- do.call(rbind,out)
   if(id.row.names) row.names(out) <- as.character(sp.object@data$id)
   return(out)
