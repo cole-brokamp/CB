@@ -1,6 +1,6 @@
 #' Retreive Odds Ratio Table from Logistic GLM Objects
 #'
-#' This function returns a data.frame of the odds ratios and their 95% confidence intervals.
+#' This function returns a data.frame of the odds ratios and their 95\% confidence intervals.
 #' @param logistic.glm A logistic GLM R object.  If not an object of 'glm' and 'lm', it will stop with an error.
 #' @param sig.star Will return an extra column with a star if the confidence interval does not contain 1. Defaults to TRUE.
 #' @param show.intercept Will show the intercept and its confidence interval only if set to TRUE. Defaults to FALSE.

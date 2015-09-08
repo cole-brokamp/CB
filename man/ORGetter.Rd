@@ -17,7 +17,7 @@ ORGetter(logistic.glm, digits = 2, sig.star = TRUE,
 \item{show.intercept}{Will show the intercept and its confidence interval only if set to TRUE. Defaults to FALSE.}
 }
 \description{
-This function returns a data.frame of the odds ratios and their 95% confidence intervals.
+This function returns a data.frame of the odds ratios and their 95\% confidence intervals.
 }
 \examples{
 \dontrun{ x1 <- rnorm(100)
