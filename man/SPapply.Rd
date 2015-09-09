@@ -4,7 +4,7 @@
 \alias{SPapply}
 \title{SPapply}
 \usage{
-SPapply(sp.object, FUN., ..., id.row.names = FALSE)
+SPapply(sp.object, FUN., ..., progress.bar = TRUE, id.row.names = FALSE)
 }
 \arguments{
 \item{sp.object}{a SpatialPoints or SpatialPointsDataFrame object}
@@ -12,6 +12,8 @@ SPapply(sp.object, FUN., ..., id.row.names = FALSE)
 \item{FUN.}{function to be applied; must take sp.object as first argument and must return a data.frame}
 
 \item{...}{additional arguments passed to function}
+
+\item{progress.bar}{logical, show progress bar?}
 
 \item{id.row.names}{if \code{TRUE}, set row.names of output data.frame from \code{data$id} of \code{sp.object}}
 }
