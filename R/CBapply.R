@@ -19,7 +19,10 @@ CBapply <- function(X,FUN,output='data.frame',num.cores=1,...) {
   if (! output %in% c('data.frame','list')) stop('output must be specified as "data.frame" or "list"')
   if (num.cores == 1) tmp <- sapply(X,FUN,simplify=FALSE,USE.NAMES=TRUE,...)
   if (! num.cores == 1) tmp <- parallel::mclapply(X,FUN,mc.cores=num.cores,...)
-  if (output=='data.frame') rtn <- do.call(plyr::rbind.fill,tmp)
+  if (output=='data.frame') {
+    rtn <- do.call(plyr::rbind.fill,tmp)
+    row.names(rtn) <- names(tmp)
+  }
   if (output=='list') rtn <- tmp
   return(rtn)
 }
