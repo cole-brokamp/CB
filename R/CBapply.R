@@ -10,7 +10,7 @@
 #' @export
 #' @examples X <- as.data.frame(matrix(runif(100),ncol=10))
 #' names(X) <- LETTERS[1:10]
-#' CBapply(X,mean)
+#' # CBapply(X,mean) # <- will return error
 #' # function must return a data.frame with named columns for column names to work
 #' CBapply(X,function(x) data.frame('mean'=mean(x)))
 
@@ -19,7 +19,7 @@ CBapply <- function(X,FUN,output='data.frame',num.cores=1,...) {
   if (! output %in% c('data.frame','list')) stop('output must be specified as "data.frame" or "list"')
   if (num.cores == 1) tmp <- sapply(X,FUN,simplify=FALSE,USE.NAMES=TRUE,...)
   if (! num.cores == 1) tmp <- parallel::mclapply(X,FUN,mc.cores=num.cores,...)
-  if (output=='data.frame') rtn <- do.call(rbind,tmp)
+  if (output=='data.frame') rtn <- do.call(plyr::rbind.fill,tmp)
   if (output=='list') rtn <- tmp
   return(rtn)
 }

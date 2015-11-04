@@ -23,7 +23,7 @@ This function is a wrapper for sapply with simplify=FALSE and USE.NAMES=TRUE. It
 \examples{
 X <- as.data.frame(matrix(runif(100),ncol=10))
 names(X) <- LETTERS[1:10]
-CBapply(X,mean)
+# CBapply(X,mean) # <- will return error
 # function must return a data.frame with named columns for column names to work
 CBapply(X,function(x) data.frame('mean'=mean(x)))
 }
