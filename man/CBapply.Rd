@@ -4,7 +4,7 @@
 \alias{CBapply}
 \title{CB's Custom Apply Function}
 \usage{
-CBapply(X, FUN, output = "data.frame", num.cores = 1, ...)
+CBapply(X, FUN, output = "data.frame", fill = FALSE, num.cores = 1, ...)
 }
 \arguments{
 \item{X}{List of objects to apply over}
@@ -12,6 +12,8 @@ CBapply(X, FUN, output = "data.frame", num.cores = 1, ...)
 \item{FUN}{Function to apply}
 
 \item{output}{Output type. Defaults to 'data.frame', but can also be set to 'list' to suppress rbinding of the list.}
+
+\item{fill}{(defaults to FALSE) use plry::rbind.fill to fill in missing columns}
 
 \item{num.cores}{Defaults to 1 and the base 'sapply' is used. If set to greater than one, then it is the number of cores used in parallel::mclapply().}
 
