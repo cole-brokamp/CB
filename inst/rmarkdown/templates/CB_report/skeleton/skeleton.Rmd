@@ -10,6 +10,11 @@ classoption: portrait
 output:
   pdf_document:
     fig_caption: yes
+    
+header-includes:
+- \usepackage[table]{xcolor}
+- \definecolor{Gray}{gray}{0.85}
+- \rowcolors{2}{Gray}{white}
 ---
 
 ```{r echo=FALSE}

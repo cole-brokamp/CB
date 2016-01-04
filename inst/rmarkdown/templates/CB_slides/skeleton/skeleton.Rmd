@@ -23,8 +23,9 @@ header-includes:
 - \useoutertheme[subsection=false]{smoothbars}
 - \useinnertheme{circles}
 - \usepackage{graphics}
-- \usepackage{xcolor,colortbl}
+- \usepackage[table]{xcolor}
 - \definecolor{Gray}{gray}{0.85}
+- \rowcolors{2}{Gray}{white}
 - \AtBeginSubsection[]{}
 - \AtBeginSection[]{}
 ---
