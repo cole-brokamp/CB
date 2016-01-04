@@ -24,10 +24,15 @@ CBapply <- function(X,FUN,output='data.frame',fill=FALSE,num.cores=1,...) {
     if (fill) {
       tmp <- lapply(tmp,as.data.frame)
       rtn <- do.call(plyr::rbind.fill,tmp)
+      try({
+        row.names(rtn) <- names(tmp)
+        },silent=TRUE)
     }
     if (!fill) {
       rtn <- do.call(rbind,tmp)
-      row.names(rtn) <- names(tmp)
+      try({
+        row.names(rtn) <- names(tmp)
+      },silent=TRUE)
     }
   }
   if (output=='list') rtn <- tmp
