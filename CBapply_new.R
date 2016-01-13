@@ -21,19 +21,56 @@
 # num_cores = integer 
     # if 1, then normal
     # if > 1, then use parallel::mclapply
-# ... supplied to progress bar (customize it)
-
-n <- length(names(X))
-pb <- progress::progress_bar(n)
-pb$tick(0)
-pb$tick(1/n)
+# ... extra arguments supplied to function
 
 # example
 X <- as.data.frame(matrix(runif(100),ncol=10))
 names(X) <- LETTERS[1:10]
 CBapply(X,function(x) data.frame('mean'=mean(x)))
 
+CBapply <- function(X,FUN,output=c('data.frame','list'),fill=FALSE,
+                    num.cores=2,...,names=c('row.names','names'),
+                    pb=c('graphical','text','none')) {
+  stopifnot(output %in% c('data.frame','list'), 
+            num.cores > 0,
+            names %in% c('row.names','names'))
+  fillFUN <- ifelse(fill,plyr::rbind.fill,rbind)
+  n <- length(X)
+  
+  wrapperFUN <- function(x,...) {
+    if (pb == 'graphical') {
+      pb <- progress::progress_bar$new(total=n)
+      pb$tick(1/n)
+    }
+    FUN(x,...)
+  }
+  
+  
+  if (is.null(names(X))) {
+    apply_names <- as.character(X)
+  } else {
+    apply_names <- names(X)
+  }
+  
+  
+  
+  tmp <- parallel::mclapply(X,wrapperFUN,mc.cores=num.cores)
+  
+  if( ! all(sapply(tmp,nrow) ==  1)) {
+    warning('output from function is not data.frame with 1 row\n ... putting names in "names" column')
+    tmp$names <- rep(apply_names,each=sapply(tmp,nrow))
+  } else {
+    row.names(tmp) <- apply_names
+  }
+  
+  
+  
+  if (names == 'row.names') row.names(tmp) <- apply_names
+  if (names == 'names') tmp$names <- apply_names
+  
 
+    # test if any data.frames in list of output has more than one row; if so, make new row.names
+    
 CBapply <- function(X,FUN,output='data.frame',fill=FALSE,num.cores=1,...) {
   if (! output %in% c('data.frame','list')) stop('output must be specified as "data.frame" or "list"')
   if (num.cores == 1) tmp <- sapply(X,FUN,simplify=FALSE,USE.NAMES=TRUE,...)
