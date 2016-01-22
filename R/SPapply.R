@@ -13,7 +13,7 @@
 SPapply <- function(sp.object,FUN.,...,progress.bar=TRUE,id.row.names=FALSE) {
   # require(pbapply)
   stopifnot(class(sp.object) %in% c('SpatialPoints','SpatialPointsDataFrame','SpatialPolygonsDataFrame','SpatialPolygons'))
-  N. <- nrow(sp.object@coords)
+  N. <- length(sp.object)
   FUN <- match.fun(FUN.)
   if (progress.bar) pb <- pbapply::startpb(0,N.)
   out <- vector('list',N.)
