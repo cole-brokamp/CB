@@ -22,6 +22,7 @@
     # if 1, then normal
     # if > 1, then use parallel::mclapply
 # ... extra arguments supplied to function
+# use AnyBar from Github to put status of function in the MacOSX menubar (change colors when its done)
 
 # example
 X <- as.data.frame(matrix(runif(100),ncol=10))
