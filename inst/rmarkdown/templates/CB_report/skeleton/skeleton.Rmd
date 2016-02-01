@@ -14,7 +14,7 @@ output:
 header-includes:
 - \usepackage[table]{xcolor}
 - \definecolor{Gray}{gray}{0.85}
-- \rowcolors{2}{Gray}{white}
+- \rowcolors{2}{white}{Gray}
 ---
 
 ```{r echo=FALSE}
