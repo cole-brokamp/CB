@@ -6,91 +6,89 @@
 #' @param ... Additional arguments to the function
 #' @examples X <- as.data.frame(matrix(runif(100),ncol=10))
 #' names(X) <- LETTERS[1:10]
-#' # CBapply(X,mean) # <- will return error
+#' # CBapply(X,mean) # <- will name column as "FUN.(x, ...)"
 #' # function must return a data.frame with named columns for column names to work
 #' CBapply(X,function(x) data.frame('mean'=mean(x)))
-
-# ideas
-# pb = c('graphical','text','none')
-    # auto for graphical selected if in console or R Studio
-    # auto for text selected if not in console
-# fill = logical
-# names = c('row.names','custom_name')
-    # implement check to see if names is unique, if not, use applied names
-# output = c('data.frame','list')
-# num_cores = integer 
-    # if 1, then normal
-    # if > 1, then use parallel::mclapply
-# ... extra arguments supplied to function
-# use AnyBar from Github to put status of function in the MacOSX menubar (change colors when its done)
+#' CBapply(X,function(x) data.frame('mean'=mean(x),'median'=median(x)))
 
 # example
 X <- as.data.frame(matrix(runif(100),ncol=10))
 names(X) <- LETTERS[1:10]
-CBapply(X,function(x) data.frame('mean'=mean(x)))
 
-CBapply <- function(X,FUN,output=c('data.frame','list'),fill=FALSE,
-                    num.cores=2,...,names=c('row.names','names'),
-                    pb=c('graphical','text','none')) {
-  stopifnot(output %in% c('data.frame','list'), 
-            num.cores > 0,
+CBapply(X,function(x) data.frame('mean'=mean(x)),
+        output='data.frame',fill=F,parallel=F,names='row.names',pb=F)
+CBapply(X,mean,
+        output='data.frame',fill=F,parallel=T,names='row.names',pb=T,na.rm=T)
+
+
+
+CBapply <- function(X,FUN.,output='data.frame',fill=FALSE,parallel=FALSE,
+                    num.cores=NULL,...,names='row.names',pb=TRUE) {
+
+  stopifnot(output %in% c('data.frame','list'),
+            num.cores > 0 | is.null(num.cores),
             names %in% c('row.names','names'))
-  fillFUN <- ifelse(fill,plyr::rbind.fill,rbind)
-  n <- length(X)
-  
-  wrapperFUN <- function(x,...) {
-    if (pb == 'graphical') {
-      pb <- progress::progress_bar$new(total=n)
-      pb$tick(1/n)
-    }
-    FUN(x,...)
-  }
-  
-  
-  if (is.null(names(X))) {
-    apply_names <- as.character(X)
-  } else {
-    apply_names <- names(X)
-  }
-  
-  
-  
-  tmp <- parallel::mclapply(X,wrapperFUN,mc.cores=num.cores)
-  
-  if( ! all(sapply(tmp,nrow) ==  1)) {
-    warning('output from function is not data.frame with 1 row\n ... putting names in "names" column')
-    tmp$names <- rep(apply_names,each=sapply(tmp,nrow))
-  } else {
-    row.names(tmp) <- apply_names
-  }
-  
-  
-  
-  if (names == 'row.names') row.names(tmp) <- apply_names
-  if (names == 'names') tmp$names <- apply_names
-  
 
-    # test if any data.frames in list of output has more than one row; if so, make new row.names
-    
-CBapply <- function(X,FUN,output='data.frame',fill=FALSE,num.cores=1,...) {
-  if (! output %in% c('data.frame','list')) stop('output must be specified as "data.frame" or "list"')
-  if (num.cores == 1) tmp <- sapply(X,FUN,simplify=FALSE,USE.NAMES=TRUE,...)
-  if (! num.cores == 1) tmp <- parallel::mclapply(X,FUN,mc.cores=num.cores,...)
-  if (output=='data.frame') {
-    if (fill) {
-      tmp <- lapply(tmp,as.data.frame)
-      rtn <- do.call(plyr::rbind.fill,tmp)
-      try({
-        row.names(rtn) <- names(tmp)
-        },silent=TRUE)
-    }
-    if (!fill) {
-      rtn <- do.call(rbind,tmp)
-      try({
-        row.names(rtn) <- names(tmp)
-      },silent=TRUE)
-    }
+  FUN <- function(x,...) as.data.frame(FUN.(x,...))
+
+  n <- length(X)
+  if (!is.vector(X) || is.object(X)) X <- as.list(X)
+
+
+  if (parallel) {
+    n.cores <- ifelse(is.null(num.cores),
+                      parallel::detectCores(TRUE),
+                      num.cores)
+    if (is.na(n.cores)) n.cores <- 1
   }
-  if (output=='list') rtn <- tmp
-  return(rtn)
+
+    if (pb & (!parallel)) {
+      tmp <- vector('list', n)
+      pb <- progress::progress_bar$new(total=100,
+                                       format='   ...  :what (:percent)   [ ETA: :eta | Elapsed: :elapsed ]',
+                                       clear=FALSE,force=FALSE)
+      for (i in 1:n) {
+        pb$tick(len=100/n,tokens = list(what = paste0('processing ',i,' of ',n)))
+        tmp[[i]] <- FUN(X[[i]],...)
+      }
+    }
+
+    if (pb & parallel) {
+      wrapFUN <- function(i) {
+        message(paste0('   ... processing ',i,' of ',n))
+        out <- FUN(X[[i]],...)
+        return(out)
+      }
+      wrapFUN(1)
+      tmp <- parallel::mclapply(1:n,wrapFUN,mc.cores=n.cores,mc.silent=F,mc.cleanup=T)
+    }
+
+
+    if ((!pb) & parallel) tmp <- parallel::mclapply(X,FUN,mc.cores=num.cores,...)
+    if ((!pb) & (!parallel)) tmp <- lapply(X,FUN,...)
+
+    if (output=='data.frame') {
+      fillFUN <- ifelse(fill,plyr::rbind.fill,rbind)
+      tmp <- do.call(fillFUN,tmp)
+    }
+
+    if (is.null(names(X))) {
+      apply_names <- as.character(X)
+    } else {
+      apply_names <- names(X)
+    }
+
+    if ((names == 'row.names') & (output == 'data.frame')) {
+      if( ! all(sapply(tmp,nrow) ==  1)) {
+        warning('output from function is not data.frame with 1 row\n ... putting names in "names" column')
+        tmp$names <- rep(apply_names,each=sapply(tmp,nrow))
+      } else {
+        row.names(tmp) <- apply_names
+      }
+      row.names(tmp) <- apply_names
+    }
+  if (names == 'names' & (output == 'data.frame')) tmp$names <- rep(apply_names,each=sapply(tmp,nrow))
+  if (output == 'list') names(tmp) <- apply_names
+
+  return(tmp)
 }
