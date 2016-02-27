@@ -1,0 +1,4 @@
+Name: Knit All Formats
+Description: Knits Current Document to Word, PDF, and HTML
+Binding: knit_all
+Interactive: false

@@ -9,6 +9,8 @@ Imports:
 		XML,
 		RCurl,
 		pbapply,
-		plyr
+		plyr,
+		rmarkdown,
+		rstudioapi
 License: GPL
 LazyData: true
