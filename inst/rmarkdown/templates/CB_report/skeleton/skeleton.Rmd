@@ -1,7 +1,7 @@
 ---
 title: "TITLE"
 author: "Cole Brokamp"
-date: "DATE"
+date: "`r CB::date_print()`"
 
 fontsize: 10pt
 geometry: margin=0.3in
