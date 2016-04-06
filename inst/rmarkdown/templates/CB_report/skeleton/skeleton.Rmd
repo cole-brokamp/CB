@@ -3,24 +3,24 @@ title: "TITLE"
 author: "Cole Brokamp"
 date: '`r CB::date_print()`'
 output:
-  pdf_document:
-    fig_caption: yes
   html_document:
     code_folding: hide
     highlight: pygments
     toc: yes
     toc_float: yes
+  pdf_document:
+    fig_caption: yes
+fontsize: 10pt
 geometry: margin=0.5in
 header-includes:
 - \usepackage[table]{xcolor}
 - \definecolor{Gray}{gray}{0.85}
 - \rowcolors{2}{white}{Gray}
-fontsize: 10pt
 classoption: portrait
+bibliography: package.bib
 ---
 
 ```{r echo=FALSE}
 knitr::opts_chunk$set(prompt=F,comment=NA,warning=FALSE,message=FALSE,cache=FALSE)
 ```
 
-Hey there
