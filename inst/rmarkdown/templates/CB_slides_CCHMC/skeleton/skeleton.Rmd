@@ -1,0 +1,27 @@
+---
+title: "TITLE"
+author: "Cole Brokamp"
+date: "`r CB::date_print()`"
+output:
+  beamer_presentation:
+    highlight: pygments
+    includes:
+      in_header: header.tex
+    slide_level: 3
+---
+
+# Section One
+## Section One
+
+### Slide 1
+
+### Slide 2
+
+# Section Two
+## Section Two
+
+### Slide 1
+
+### Slide 2
+
+### Slide 3

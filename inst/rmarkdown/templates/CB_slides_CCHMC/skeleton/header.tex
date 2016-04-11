@@ -1,0 +1,48 @@
+% \institute{Department of Biostatistics and Epidemiology\\Cincinnati Children's Hospital Medical Center}
+\titlegraphic{\includegraphics[height=1.1cm]{cchmc.png}}
+\usetheme{default}
+
+\definecolor{cchmc_blue}{rgb}{0.15, 0.38, 0.61}
+\setbeamercolor{title}{fg=cchmc_blue}
+\setbeamercolor{section in toc}{fg=cchmc_blue}
+\setbeamercolor{subsection in toc}{fg=black}
+\setbeamercolor{section in head/foot}{fg=black}
+\setbeamerfont{headline}{size=\scriptsize}
+\setbeamerfont{section in head/foot}{size=\scriptsize}
+\setbeamerfont{subsection in head/foot}{size=\normalsize}
+\setbeamercolor{subsection in head/foot}{fg=black}
+\setbeamercolor{frametitle}{fg=cchmc_blue}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamercolor{local structure}{fg=cchmc_blue}
+\setbeamerfont{footnote}{size=\tiny}
+\beamertemplatenavigationsymbolsempty
+\useinnertheme{circles}
+% \useoutertheme[subsection=false]{smoothbars}
+\useoutertheme[compress,subsection=false]{miniframes}
+
+
+% % make only one dot per subsection, instead of per slide
+% \usepackage{etoolbox}
+% \makeatletter
+% \patchcmd{\slideentry}{\advance\beamer@xpos by1\relax}{}{}{}
+% \def\beamer@subsectionentry#1#2#3#4#5{\advance\beamer@xpos by1\relax}%
+% \makeatother
+
+% display ToC with highlighted current section at the begin of each section
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection,
+    sectionstyle=show/shaded,
+    subsectionstyle=hide/hide/hide]
+  \end{frame}
+}
+\AtBeginSubsection[]{}
+
+
+
+
+% \usepackage[table]{xcolor}
+% \definecolor{Gray}{gray}{0.85}
+% \rowcolors{2}{white}{Gray}
