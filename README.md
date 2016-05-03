@@ -1,4 +1,9 @@
 ## CB
+
+
+[![DOI](https://zenodo.org/badge/21831/cole-brokamp/CB.svg)](https://zenodo.org/badge/latestdoi/21831/cole-brokamp/CB)
+
+
 My personal R package. Install this package within `R` by running `devtools::install_github('cole-brokamp/CB')`.
 
 #### Highlighted functions:
