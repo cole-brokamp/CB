@@ -13,6 +13,7 @@ Imports:
     plyr,
     rmarkdown,
     rstudioapi
+    progress
 License: GPL
 LazyData: true
 RoxygenNote: 5.0.1
