@@ -17,6 +17,7 @@
 
 CBapply <- function(X,FUN,output='data.frame',fill=FALSE,num.cores=1,...) {
   # library(parallel)
+  .Deprecated('cb_apply','CB','CBapply is deprecated but is maintained here for backwards compatability.\nConsider using CB::cb_apply instead.','CBapply')
   if (! output %in% c('data.frame','list')) stop('output must be specified as "data.frame" or "list"')
   if (num.cores == 1) tmp <- sapply(X,FUN,simplify=FALSE,USE.NAMES=TRUE,...)
   if (! num.cores == 1) tmp <- parallel::mclapply(X,FUN,mc.cores=num.cores,...)
