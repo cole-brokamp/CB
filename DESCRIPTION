@@ -3,12 +3,15 @@ Title: Cole Brokamp's Personal Functions
 Version: 0.1
 Authors@R: person("Cole", "Brokamp", , "cole.brokamp@gmail.com", role = c("aut", "cre"))
 Description: Cole's personal R functions
-Depends: R (>= 3.1.2)
+Depends:
+    R (>= 3.1.2)
 Imports:
-		parallel,
-		XML,
-		RCurl,
-		pbapply,
-		plyr
+    parallel,
+    XML,
+    RCurl,
+    pbapply,
+    plyr,
+    progress
 License: GPL
 LazyData: true
+RoxygenNote: 5.0.1
