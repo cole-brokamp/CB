@@ -32,8 +32,6 @@ Function designed to handle anything that lapply can but can specify parallel
 processing, output naming, progress bars, output format and more.
 }
 \details{
-TODO: make progress bar for parallel processings;
-
 Ideally, a function that returns a data.frame should be supplied. This gives
 the user the advantage of specifying the names of the columns in the
 resulting data.frame.  If the function does not return a data.frame, then
@@ -49,10 +47,49 @@ then names will be automatically generated ('V1','V2',...). Lastly, (3) a
 vector of character strings will assign this vector as the row.names; it must
 have as many elements as the number of rows in the resulting data frame.
 
-If not running an interactive R session, then no progress bar is printed.
-However, if parallel processing is being used and progress bar is requested,
-the text progress bar will be printed with each interation. This is useful
-for tracking progress of functions while they are running in batch mode on a
-server, for example.
+A progress bar can be shown in the terminal using an interactive R session or in an
+.Rout file, if using R CMD BATCH and submitting R scripts for non-interactive completion.
+Although R Studio supports the progress bar for single process workers,
+it has a problem showing the progress bar if using parallel processing
+(see the discussion at http://stackoverflow.com/questions/27314011/mcfork-in-rstudio).
+In this specific case (R Studio + parallel processing),
+text updates will be printed to the file `.process`. Use a shell and
+`tail -f .progress` to see the updates.
+}
+\examples{
+X <- as.data.frame(matrix(runif(100),ncol=10))
+
+fun. <- function(x) {
+   Sys.sleep(0.5)
+   mean(x)
+}
+
+cb_apply(X,fun.,output='data.frame',parallel=F,names='row.names',pb=F)
+
+cb_apply(X,fun.,output='data.frame',parallel=F,names='id',pb=F)
+
+fun. <- function(x) {
+  Sys.sleep(0.5)
+  data.frame('mean'=mean(x),'median'=median(x))
+}
+
+cb_apply(X,fun.,output='data.frame',parallel=F,names='row.names',pb=F)
+
+cb_apply(X,fun.,output='data.frame',parallel=F,names='id',pb=F)
+
+names(X) <- LETTERS[1:10]
+
+cb_apply(X,fun.,output='data.frame',parallel=F,names='row.names',pb=T)
+
+cb_apply(X,fun.,output='data.frame',parallel=T,num.cores=2,names='row.names',pb=F)
+
+fun. <- function(x) {
+  Sys.sleep(0.5)
+  data.frame('summ_stat'=c(mean(x),median(x)))
+}
+
+cb_apply(X,fun.,output='data.frame',parallel=T,num.cores=2,names='row.names',pb=T)
+
+cb_apply(X,fun.,output='data.frame',parallel=T,num.cores=2,names=paste(rep(names(X),each=2),c('mean','median'),sep='_'),pb=T)
 }
 
