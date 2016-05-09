@@ -1,4 +1,4 @@
-#' CB's Custom Apply Function
+#' deprecated! use cb_apply instead
 #'
 #' This function is a wrapper for sapply with simplify=FALSE and USE.NAMES=TRUE. It then rbinds via do.call to return data.frame. In order for the names to work properly, a function that returns a data.frame must be used (see example).
 #' @param X List of objects to apply over

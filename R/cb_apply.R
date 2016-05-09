@@ -1,4 +1,4 @@
-#' cb_apply
+#' custom *apply function
 #'
 #' Function designed to handle anything that lapply can but can specify parallel
 #' processing, output naming, progress bars, output format and more.
