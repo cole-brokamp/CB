@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_apply.R
 \name{cb_apply}
 \alias{cb_apply}
-\title{cb_apply}
+\title{custom *apply function}
 \usage{
 cb_apply(X, FUN., output = "data.frame", fill = TRUE, names = "row.names",
   pb = TRUE, parallel = FALSE, num.cores = NULL, ...)

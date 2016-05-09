@@ -2,7 +2,7 @@
 % Please edit documentation in R/CBapply.R
 \name{CBapply}
 \alias{CBapply}
-\title{CB's Custom Apply Function}
+\title{deprecated! use cb_apply instead}
 \usage{
 CBapply(X, FUN, output = "data.frame", fill = FALSE, num.cores = 1, ...)
 }
