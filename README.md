@@ -8,7 +8,7 @@ My personal R package. Install this package within `R` by running `devtools::ins
 
 #### Highlighted functions:
 
-- `CBapply` - wrapper for lapply and returning results as data frame with proper row names; `parallel::mclapply()` support and `plyr::rbind.fill` support
+- `cb_apply` - custom wrapper for sapply/lapply that returns an organized and properly named data.frame as a result. Also uses progress bars to update users on computation process, even when using parallel processing!
 - `getPackages` - takes a package name and returns a list of its dependencies; useful for downloading source files of packages to install on a separate server running R where internet access is blocked
 - `LatLongToFIPS` - takes lat/lon coordinate and returns the FIPS code by calling the Census Block Conversion API
 - `ORGetter` - returns a nicely formatted table of odds ratios from a logistic regression model
