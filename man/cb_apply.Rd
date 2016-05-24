@@ -4,8 +4,8 @@
 \alias{cb_apply}
 \title{custom *apply function}
 \usage{
-cb_apply(X, FUN., output = "data.frame", fill = TRUE, names = "row.names",
-  pb = TRUE, parallel = FALSE, num.cores = NULL, ...)
+cb_apply(X, FUN., output = "data.frame", fill = TRUE, pb = TRUE,
+  parallel = FALSE, num.cores = NULL, ...)
 }
 \arguments{
 \item{X}{List of objects to apply over}
@@ -18,14 +18,14 @@ cb_apply(X, FUN., output = "data.frame", fill = TRUE, names = "row.names",
 \item{fill}{(defaults to FALSE) use plyr::rbind.fill to fill in missing
 columns when binding together results}
 
-\item{names}{how to record the names of X in the resulting list or
-data.frame. see details}
-
 \item{num.cores}{The number of cores used for parallel processing.  Can be
 specified as an integer, or it will guess the number of cores available
 with detectCores(). If parallel is FALSE, the input here will be set to 1.}
 
 \item{...}{Additional arguments to the function}
+
+\item{names}{how to record the names of X in the resulting list or
+data.frame. see details}
 }
 \description{
 Function designed to handle anything that lapply can but can specify parallel

@@ -78,12 +78,14 @@
 
 
 
-cb_apply <- function(X,FUN.,output='data.frame',fill=TRUE,names='row.names',pb=TRUE,
+cb_apply <- function(X,FUN.,output='data.frame',fill=TRUE,
+                     # names='row.names',
+                     pb=TRUE,
                      parallel=FALSE,num.cores=NULL,...){
 
   stopifnot(output %in% c('data.frame','list'),
-            num.cores > 0 | is.null(num.cores),
-            is.character(names))
+            num.cores > 0 | is.null(num.cores))
+            # is.character(names))
 
   # figure out way to name output column in data.frame if already doesn't return a data.frame
   FUN <- function(x,...) {
@@ -139,35 +141,38 @@ cb_apply <- function(X,FUN.,output='data.frame',fill=TRUE,names='row.names',pb=T
   if ((!pb) & (num.cores == 1)) tmp <- lapply(X,FUN,...)
 
   # fill function
-  if (output=='data.frame') fillFUN <- ifelse(fill,plyr::rbind.fill,rbind)
-
-  if (length(names) == 1) {
-    if(is.null(names(X))) apply_names <- paste0('n',1:length(tmp))
-    if(names(X)[1] == 'V1') apply_names <- paste0('n',1:length(tmp))
-    if(!is.null(names(X))) apply_names <- names(X)
-  }
-  if (length(names) > 1) {
-    apply_names <- names
-    names <- 'names'
-  }
-
-  if (('row.names' %in% names) & (output == 'data.frame')) {
-    if( ! all(sapply(tmp,nrow) ==  1)) {
-      warning('output from function is not data.frame with 1 row; putting names in "names" column')
-      new_apply_names <- unlist(lapply(1:length(tmp),function(r) rep(apply_names[r],each=sapply(tmp,nrow)[r])))
-      tmp <- do.call(fillFUN,tmp)
-      tmp[ ,'names'] <- new_apply_names
-    } else {
-      tmp <- do.call(fillFUN,tmp)
-      row.names(tmp) <- apply_names
-    }
-  }
-  if ( (length(names) == 1) & (!'row.names' %in% names) & (output == 'data.frame') ){
+  if (output=='data.frame') {
+    fillFUN <- ifelse(fill,plyr::rbind.fill,rbind)
     tmp <- do.call(fillFUN,tmp)
-    tmp[ ,names] <- apply_names
-
   }
-  if (output == 'list') names(tmp) <- apply_names
+
+  # if (length(names) == 1) {
+  #   if(is.null(names(X))) apply_names <- paste0('n',1:length(tmp))
+  #   if(names(X)[1] == 'V1') apply_names <- paste0('n',1:length(tmp))
+  #   if(!is.null(names(X))) apply_names <- names(X)
+  # }
+  # if (length(names) > 1) {
+  #   apply_names <- names
+  #   names <- 'names'
+  # }
+  #
+  # if (('row.names' %in% names) & (output == 'data.frame')) {
+  #   if( ! all(sapply(tmp,nrow) ==  1)) {
+  #     warning('output from function is not data.frame with 1 row; putting names in "names" column')
+  #     new_apply_names <- unlist(lapply(1:length(tmp),function(r) rep(apply_names[r],each=sapply(tmp,nrow)[r])))
+  #     tmp <- do.call(fillFUN,tmp)
+  #     tmp[ ,'names'] <- new_apply_names
+  #   } else {
+  #     tmp <- do.call(fillFUN,tmp)
+  #     row.names(tmp) <- apply_names
+  #   }
+  # }
+  # if ( (length(names) == 1) & (!'row.names' %in% names) & (output == 'data.frame') ){
+  #   tmp <- do.call(fillFUN,tmp)
+  #   tmp[ ,names] <- apply_names
+  #
+  # }
+  # if (output == 'list') names(tmp) <- apply_names
 
   return(tmp)
 }
