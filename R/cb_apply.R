@@ -129,10 +129,12 @@ cb_apply <- function(X,FUN.,output='data.frame',fill=TRUE,
       message("progress bar doesn't work in RStudio!\n... follow the file \".progress\" instead")
       wrapFUN <- function(i,...) {
         out <- FUN(X[[i]],...)
-        cat(paste0('   ... processing ',i,' of ',n,'\n'),file='.progress',append=FALSE)
+        out.percentage <- round(i/n*100,digits=0)
+        cat(paste0('   ... processing ',i,' of ',n,' (',out.percentage,'%)','\n'),
+            file='.progress',append=FALSE)
         return(out)
       }
-      tmp <- mclapply(1:n,wrapFUN,...,mc.cores=num.cores)
+      tmp <- parallel::mclapply(1:n,wrapFUN,...,mc.cores=num.cores)
     } else {
       tmp <- mclapply_pb(X,FUN,mccores=num.cores,...)
     }
