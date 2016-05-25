@@ -88,13 +88,15 @@ cb_apply <- function(X,FUN.,output='data.frame',fill=TRUE,
             # is.character(names))
 
   # figure out way to name output column in data.frame if already doesn't return a data.frame
-  FUN <- function(x,...) {
-    outtt <- FUN.(x,...)
-    if (is.data.frame(outtt)) return(outtt)
-    if (!is.data.frame(outtt)) outtt <- as.data.frame(outtt)
-    names(outtt) <- paste0('V',1:ncol(outtt))
-    return(outtt)
-  }
+  # FUN <- function(x,...) {
+  #   outtt <- FUN.(x,...)
+  #   if (is.data.frame(outtt)) return(outtt)
+  #   if (!is.data.frame(outtt)) outtt <- as.data.frame(outtt)
+  #   names(outtt) <- paste0('V',1:ncol(outtt))
+  #   return(outtt)
+  # }
+
+  FUN <- FUN.
 
   n <- length(X)
   if (!is.vector(X) || is.object(X)) X <- as.list(X)
