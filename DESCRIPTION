@@ -14,6 +14,6 @@ Imports:
     rmarkdown,
     rstudioapi,
     progress
-License: GPL
+License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 5.0.1
