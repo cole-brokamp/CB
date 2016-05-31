@@ -32,8 +32,8 @@ mclapply_pb <- function(X, FUN, ...,
   if (mc.progress) {
     f <- fifo(tempfile(), open="w+b", blocking=T)
     p <- parallel:::mcfork()
-    pb <- txtProgressBar(0, length(X), style=3)
-    setTxtProgressBar(pb, 0)
+    pb <- utils::txtProgressBar(0, length(X), style=3)
+    utils::setTxtProgressBar(pb, 0)
     progress <- 0
     if (inherits(p, "masterProcess")) {
       while (progress < length(X)) {
@@ -46,7 +46,7 @@ mclapply_pb <- function(X, FUN, ...,
     }
   }
   tryCatch({
-    result <- mclapply(X, function(...) {
+    result <- parallel::mclapply(X, function(...) {
       res <- FUN(...)
       if (mc.progress) writeBin(1, f)
       res

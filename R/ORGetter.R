@@ -17,8 +17,8 @@
 
 ORGetter <- function(logistic.glm,digits=2,sig.star=TRUE,show.intercept=FALSE){
   stopifnot(class(logistic.glm)==c('glm','lm'))
-  OR <- coef(logistic.glm)
-  CI <- suppressMessages(confint(logistic.glm))
+  OR <- stats::coef(logistic.glm)
+  CI <- suppressMessages(stats::confint(logistic.glm))
   tmp <- exp(data.frame(OR,CI))
   names(tmp) <- c('odds ratio','lower.CI','upper.CI')
   tmp <- round(tmp,digits=digits)

@@ -18,10 +18,10 @@ tableTest <- function(x,group,digits.mean=2,digits.percentage=0){
   stopifnot(class(x) %in% c("factor","numeric","integer",'ordered'))
   stopifnot(class(group) %in% c('factor','ordered'))
   tmp <- data.frame(x,group)
-  tmp <- na.omit(tmp)
+  tmp <- stats::na.omit(tmp)
   if (nrow(tmp) < length(x)) warning('NA values have been omitted')
   if (class(x) %in% c('numeric','integer')){
-    p <- round(anova(lm(x ~ group,data=tmp))["Pr(>F)"][[1]][1],digits=3)
+    p <- round(stats::anova(stats::lm(x ~ group,data=tmp))["Pr(>F)"][[1]][1],digits=3)
     p.text <- ifelse(p<0.001,"< 0.001",paste(p))
     means <- round(tapply(tmp$x,tmp$group,mean,na.rm=TRUE),digits=digits.mean)
     out <- paste0(sprintf(paste0('%.',digits.mean,'f'),means))
@@ -30,7 +30,7 @@ tableTest <- function(x,group,digits.mean=2,digits.percentage=0){
     if (!nlevels(tmp$x) == 2) warning('The outcome factor does not have 2 levels, the output of the table is wrong!')
     tbl <- table(tmp$x,tmp$group)
     n <- tbl[2, ]
-    p <- round(chisq.test(tbl,simulate.p.value=TRUE,B=100000)$p.value,digits=3)
+    p <- round(stats::chisq.test(tbl,simulate.p.value=TRUE,B=100000)$p.value,digits=3)
     p.text <- ifelse(p<0.001,"< 0.001",paste(p))
     perc <- prop.table(tbl,margin=2)[2, ] * 100
     perc.round <- paste0(sprintf(paste0('%.',digits.percentage,'f'),perc))

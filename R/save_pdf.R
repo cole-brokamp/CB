@@ -6,4 +6,4 @@
 #' @param height height of pdf image
 #' @export
 
-save_pdf <- function(file,width=11,height=8.5) invisible(dev.copy2pdf(file=file,width=width,height=height))
+save_pdf <- function(file,width=11,height=8.5) invisible(grDevices::dev.copy2pdf(file=file,width=width,height=height))

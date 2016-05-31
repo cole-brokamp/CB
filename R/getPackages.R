@@ -16,7 +16,7 @@
 
 getPackages <- function(packs){
   packages <- unlist(
-    tools::package_dependencies(packs, available.packages(),
+    tools::package_dependencies(packs, utils::available.packages(),
                          which=c("Depends", "Imports", "LinkingTo"), recursive=TRUE)
   )
   packages <- union(packs, packages)
