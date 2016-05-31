@@ -18,7 +18,7 @@
 
 tableSummary <- function(x,digits.mean=2,digits.percentage=0){
   stopifnot(class(x) %in% c("factor","numeric","integer",'ordered'))
-  tmp <- na.omit(x)
+  tmp <- stats::na.omit(x)
   number.missing <- length(x) - length(tmp)
   if (class(x) %in% c('numeric','integer')){
     out <- paste0(round(mean(tmp),digits=digits.mean))
