@@ -28,12 +28,13 @@
 #' @param FUN. Function to apply
 #' @param output Output type. Defaults to 'data.frame', but can also be set to
 #'   'list' to suppress rbinding of the list.
-#' @param parallel logical. use parallel processing?
+#' @param parallel logical; use parallel processing?
 #' @param num.cores The number of cores used for parallel processing.  Can be
 #'   specified as an integer, or it will guess the number of cores available
 #'   with detectCores(). If parallel is FALSE, the input here will be set to 1.
 #' @param fill (defaults to FALSE) use plyr::rbind.fill to fill in missing
 #'   columns when rbinding together results
+#' @param pb logical; use progress bar?
 #' @param ... Additional arguments to the function
 #' @export
 #' @examples
