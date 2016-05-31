@@ -18,9 +18,6 @@
 ##' @param mc.progress track progress?
 ##' @param mc.style    style of progress bar (see txtProgressBar)
 ##'
-##' @examples
-##' x <- mclapply2(1:1000, function(i, y) Sys.sleep(0.01))
-##' x <- mclapply2(1:3, function(i, y) Sys.sleep(1), mc.cores=1)
 ##------------------------------------------------------------------------------
 mclapply_pb <- function(X, FUN, ...,
                         mc.preschedule = TRUE, mc.set.seed = TRUE,

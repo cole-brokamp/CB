@@ -1,44 +1,40 @@
 #' custom *apply function
 #'
 #' Function designed to handle anything that lapply can but can specify parallel
-#' processing, output naming, progress bars, output format and more.
+#' processing, progress bars, output format and more.
 #'
 #' Ideally, a function that returns a data.frame should be supplied. This gives
 #' the user the advantage of specifying the names of the columns in the
 #' resulting data.frame.  If the function does not return a data.frame, then
-#' column names will be automatically generated ('V1','V2',...).
+#' column names will be automatically generated.
 #'
-#' Three options exist for the names parameter: (1) 'row.names' will attempt to
-#' assign the names of X to the row names of the resulting data.frame. If the
-#' names are not unique, then they will instead be assigned to a column in the
-#' resulting data.frame called "names". (2) any other character string (i.e.
-#' "names" or "id") will assign the names of X to a new column in the resulting
-#' data.frame with that character string. If X does not have a names attribute,
-#' then names will be automatically generated ('V1','V2',...). Lastly, (3) a
-#' vector of character strings will assign this vector as the row.names; it must
-#' have as many elements as the number of rows in the resulting data frame.
+#' Parallel processing is carried out by \code{pbapply::mclapply}. Use the
+#' \code{parallel} option to switch parallel processing on or off. Only specify
+#' the number of cores when really needed as the function will detect the
+#' maximum number of available cores.  This makes it easy to rerun the script
+#' with a higher number of available cores without having to change the code.
 #'
-#' A progress bar can be shown in the terminal using an interactive R session or in an
-#' .Rout file, if using R CMD BATCH and submitting R scripts for non-interactive completion.
-#' Although R Studio supports the progress bar for single process workers,
-#' it has a problem showing the progress bar if using parallel processing
-#' (see the discussion at http://stackoverflow.com/questions/27314011/mcfork-in-rstudio).
-#' In this specific case (R Studio + parallel processing),
-#' text updates will be printed to the file `.process`. Use a shell and
-#' `tail -f .progress` to see the updates.
+#' A progress bar can be shown in the terminal using an interactive R session or
+#' in an .Rout file, if using R CMD BATCH and submitting R scripts for
+#' non-interactive completion. Although R Studio supports the progress bar for
+#' single process workers, it has a problem showing the progress bar if using
+#' parallel processing (see the discussion at
+#' http://stackoverflow.com/questions/27314011/mcfork-in-rstudio). In this
+#' specific case (R Studio + parallel processing), text updates will be printed
+#' to the file `.process`. Use a shell and `tail -f .progress` to see the
+#' updates.
 #'
 #' @param X List of objects to apply over
 #' @param FUN. Function to apply
 #' @param output Output type. Defaults to 'data.frame', but can also be set to
 #'   'list' to suppress rbinding of the list.
+#' @param parallel logical. use parallel processing?
 #' @param num.cores The number of cores used for parallel processing.  Can be
 #'   specified as an integer, or it will guess the number of cores available
 #'   with detectCores(). If parallel is FALSE, the input here will be set to 1.
 #' @param fill (defaults to FALSE) use plyr::rbind.fill to fill in missing
-#'   columns when binding together results
+#'   columns when rbinding together results
 #' @param ... Additional arguments to the function
-#' @param names how to record the names of X in the resulting list or
-#'   data.frame. see details
 #' @export
 #' @examples
 #' X <- as.data.frame(matrix(runif(100),ncol=10))
@@ -48,33 +44,29 @@
 #'    mean(x)
 #' }
 #'
-#' cb_apply(X,fun.,output='data.frame',parallel=F,names='row.names',pb=F)
-#'
-#' cb_apply(X,fun.,output='data.frame',parallel=F,names='id',pb=F)
+#' cb_apply(X,fun.)
 #'
 #' fun. <- function(x) {
 #'   Sys.sleep(0.5)
 #'   data.frame('mean'=mean(x),'median'=median(x))
 #' }
 #'
-#' cb_apply(X,fun.,output='data.frame',parallel=F,names='row.names',pb=F)
+#' cb_apply(X,fun.,pb=TRUE)
 #'
-#' cb_apply(X,fun.,output='data.frame',parallel=F,names='id',pb=F)
-#'
+#' # when setting names of input object, function will attempt to assign them to the output
 #' names(X) <- LETTERS[1:10]
+#' cb_apply(X,fun.,pb=TRUE)
+#' cb_apply(X,fun.,output='list',pb=TRUE)
 #'
-#' cb_apply(X,fun.,output='data.frame',parallel=F,names='row.names',pb=T)
-#'
-#' cb_apply(X,fun.,output='data.frame',parallel=T,num.cores=2,names='row.names',pb=F)
-#'
+#' # but if function returns a data.frame with more than one row,
+#'    # it can't assign unique row.names to a data.frame, but it can for a list
 #' fun. <- function(x) {
 #'   Sys.sleep(0.5)
 #'   data.frame('summ_stat'=c(mean(x),median(x)))
 #' }
-#'
-#' cb_apply(X,fun.,output='data.frame',parallel=T,num.cores=2,names='row.names',pb=T)
-#'
-#' cb_apply(X,fun.,output='data.frame',parallel=T,num.cores=2,names=paste(rep(names(X),each=2),c('mean','median'),sep='_'),pb=T)
+#' # don't run because parallel processing
+#' # cb_apply(X,fun.,output='data.frame',parallel=TRUE,pb=TRUE)
+#' # cb_apply(X,fun.,output='list',parallel=TRUE,pb=FALSE)
 
 
 
@@ -144,39 +136,15 @@ cb_apply <- function(X,FUN.,output='data.frame',fill=TRUE,
   if ((!pb) & (num.cores > 1)) tmp <- parallel::mclapply(X,FUN,mc.cores=num.cores,...)
   if ((!pb) & (num.cores == 1)) tmp <- lapply(X,FUN,...)
 
+  if (output=='list') tryCatch(names(tmp) <- names(X),error=function(x)NULL)
+
   # fill function
   if (output=='data.frame') {
+    tmp <- lapply(tmp,as.data.frame)
     fillFUN <- ifelse(fill,plyr::rbind.fill,rbind)
     tmp <- do.call(fillFUN,tmp)
+    tryCatch(row.names(tmp) <- names(X),error=function(x)NULL)
   }
-
-  # if (length(names) == 1) {
-  #   if(is.null(names(X))) apply_names <- paste0('n',1:length(tmp))
-  #   if(names(X)[1] == 'V1') apply_names <- paste0('n',1:length(tmp))
-  #   if(!is.null(names(X))) apply_names <- names(X)
-  # }
-  # if (length(names) > 1) {
-  #   apply_names <- names
-  #   names <- 'names'
-  # }
-  #
-  # if (('row.names' %in% names) & (output == 'data.frame')) {
-  #   if( ! all(sapply(tmp,nrow) ==  1)) {
-  #     warning('output from function is not data.frame with 1 row; putting names in "names" column')
-  #     new_apply_names <- unlist(lapply(1:length(tmp),function(r) rep(apply_names[r],each=sapply(tmp,nrow)[r])))
-  #     tmp <- do.call(fillFUN,tmp)
-  #     tmp[ ,'names'] <- new_apply_names
-  #   } else {
-  #     tmp <- do.call(fillFUN,tmp)
-  #     row.names(tmp) <- apply_names
-  #   }
-  # }
-  # if ( (length(names) == 1) & (!'row.names' %in% names) & (output == 'data.frame') ){
-  #   tmp <- do.call(fillFUN,tmp)
-  #   tmp[ ,names] <- apply_names
-  #
-  # }
-  # if (output == 'list') names(tmp) <- apply_names
 
   return(tmp)
 }
