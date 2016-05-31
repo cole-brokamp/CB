@@ -16,7 +16,6 @@
 ##' @param mc.cleanup see mclapply
 ##' @param mc.allow.recursive see mclapply
 ##' @param mc.progress track progress?
-##' @param mc.style    style of progress bar (see txtProgressBar)
 ##'
 ##------------------------------------------------------------------------------
 mclapply_pb <- function(X, FUN, ...,
@@ -39,7 +38,7 @@ mclapply_pb <- function(X, FUN, ...,
       while (progress < length(X)) {
         readBin(f, "double")
         progress <- progress + 1
-        setTxtProgressBar(pb, progress)
+        utils::setTxtProgressBar(pb, progress)
       }
       cat("\n")
       parallel:::mcexit()
