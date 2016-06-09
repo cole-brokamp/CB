@@ -21,6 +21,6 @@ bibliography: package.bib
 ---
 
 ```{r echo=FALSE}
-knitr::opts_chunk$set(prompt=F,comment=NA,warning=FALSE,message=FALSE,cache=FALSE)
+knitr::opts_chunk$set(prompt=F,comment=NA,warning=FALSE,message=FALSE,collapse=TRUE,cache=FALSE)
 ```
 
