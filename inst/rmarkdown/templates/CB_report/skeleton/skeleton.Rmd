@@ -17,7 +17,6 @@ header-includes:
 - \definecolor{Gray}{gray}{0.85}
 - \rowcolors{2}{white}{Gray}
 classoption: portrait
-bibliography: package.bib
 ---
 
 ```{r echo=FALSE}
