@@ -15,6 +15,11 @@ output:
 
 ### Slide 1
 
+Here is some text:
+
+- oh and there is
+- also a list here
+
 ### Slide 2
 
 # Section Two
@@ -24,4 +29,3 @@ output:
 
 ### Slide 2
 
-### Slide 3
