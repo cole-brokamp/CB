@@ -18,7 +18,9 @@ cb_apply(X, FUN., output = "data.frame", fill = TRUE, pb = TRUE,
 \item{fill}{(defaults to FALSE) use plyr::rbind.fill to fill in missing
 columns when rbinding together results}
 
-\item{parallel}{logical. use parallel processing?}
+\item{pb}{logical; use progress bar?}
+
+\item{parallel}{logical; use parallel processing?}
 
 \item{num.cores}{The number of cores used for parallel processing.  Can be
 specified as an integer, or it will guess the number of cores available

@@ -30,8 +30,6 @@ objects (including classed objects) will be coerced by
 \item{mc.allow.recursive}{see mclapply}
 
 \item{mc.progress}{track progress?}
-
-\item{mc.style}{style of progress bar (see txtProgressBar)}
 }
 \description{
 Doesn't work in RStudio!
