@@ -38,6 +38,9 @@
 #'   with detectCores(). If parallel is FALSE, the input here will be set to 1.
 #' @param fill (defaults to TRUE) use plyr::rbind.fill to fill in missing
 #'   columns when rbinding together results
+#' @param .id a character specifying the name of the column inserted to identify
+#'   which element of \code{X} the row in the output data.frame came from.
+#'   Defaults to 'id', but set to NULL to suppress creation of this column
 #' @param pb logical; use progress bar?
 #' @param ... Additional arguments to the function
 #' @export
@@ -46,7 +49,7 @@
 #'
 #' fun. <- function(x) {
 #'    Sys.sleep(0.5)
-#'    c(mean(x),median(x))
+#'    mean(x)
 #' }
 #'
 #' cb_apply(X,fun.)
@@ -58,27 +61,18 @@
 #'
 #' cb_apply(X,fun.)
 #'
-#' # when setting names of input object, function will attempt to assign them to the output
+#' # when setting names of input object, function will attempt to assign them to the output in a new column
 #' names(X) <- LETTERS[1:10]
-#' cb_apply(X,fun.)
 #' cb_apply(X,fun.,output='list')
-#'
-#' # but if function returns a data.frame with more than one row,
-#'    # it can't assign unique row.names to a data.frame, but it can for a list
-#' fun. <- function(x) {
-#'   Sys.sleep(0.5)
-#'   data.frame('summ_stat'=c(mean(x),median(x)),
-#'              'stat'=c('mean','median'))
-#' }
-#' # don't run because parallel processing
-#' # cb_apply(X,fun.,output='data.frame',parallel=TRUE)
-#' # cb_apply(X,fun.,output='list',parallel=TRUE)
-
-
+#' cb_apply(X,fun.)
+#' # name the id columns something else
+#' cb_apply(X,fun.,.id='group')
+#' # set .id to NULL to supress the addition of the id columns
+#' cb_apply(X,fun.,.id=NULL)
 
 cb_apply <- function(X,FUN.,output='data.frame',fill=TRUE,
                      # names='row.names',
-                     pb=TRUE,
+                     pb=TRUE,.id='id',
                      parallel=FALSE,num.cores=NULL,...){
 
   stopifnot(output %in% c('data.frame','list'),
@@ -150,7 +144,7 @@ cb_apply <- function(X,FUN.,output='data.frame',fill=TRUE,
     fillFUN <- ifelse(fill,plyr::rbind.fill,rbind)
     tmp <- do.call(fillFUN,tmp.df.list)
     # tryCatch(row.names(tmp.df.list) <- names(X),error=function(x)NULL)
-    tryCatch(tmp$id <- rep(names(X),each=nrow(tmp.df.list[[1]])),error=function(x)NULL)
+    tryCatch(if (!is.null(.id)) tmp[ ,.id] <- rep(names(X),each=nrow(tmp.df.list[[1]])),error=function(x)NULL)
   }
 
   return(tmp)

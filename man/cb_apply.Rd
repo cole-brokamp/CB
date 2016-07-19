@@ -5,7 +5,7 @@
 \title{custom *apply function}
 \usage{
 cb_apply(X, FUN., output = "data.frame", fill = TRUE, pb = TRUE,
-  parallel = FALSE, num.cores = NULL, ...)
+  .id = "id", parallel = FALSE, num.cores = NULL, ...)
 }
 \arguments{
 \item{X}{List of objects to apply over}
@@ -19,6 +19,10 @@ cb_apply(X, FUN., output = "data.frame", fill = TRUE, pb = TRUE,
 columns when rbinding together results}
 
 \item{pb}{logical; use progress bar?}
+
+\item{.id}{a character specifying the name of the column inserted to identify
+which element of \code{X} the row in the output data.frame came from.
+Defaults to 'id', but set to NULL to suppress creation of this column}
 
 \item{parallel}{logical; use parallel processing?}
 
@@ -63,7 +67,7 @@ X <- as.data.frame(matrix(runif(100),ncol=10))
 
 fun. <- function(x) {
    Sys.sleep(0.5)
-   c(mean(x),median(x))
+   mean(x)
 }
 
 cb_apply(X,fun.)
@@ -75,20 +79,13 @@ fun. <- function(x) {
 
 cb_apply(X,fun.)
 
-# when setting names of input object, function will attempt to assign them to the output
+# when setting names of input object, function will attempt to assign them to the output in a new column
 names(X) <- LETTERS[1:10]
-cb_apply(X,fun.)
 cb_apply(X,fun.,output='list')
-
-# but if function returns a data.frame with more than one row,
-   # it can't assign unique row.names to a data.frame, but it can for a list
-fun. <- function(x) {
-  Sys.sleep(0.5)
-  data.frame('summ_stat'=c(mean(x),median(x)),
-             'stat'=c('mean','median'))
-}
-# don't run because parallel processing
-# cb_apply(X,fun.,output='data.frame',parallel=TRUE)
-# cb_apply(X,fun.,output='list',parallel=TRUE)
+cb_apply(X,fun.)
+# name the id columns something else
+cb_apply(X,fun.,.id='group')
+# set .id to NULL to supress the addition of the id columns
+cb_apply(X,fun.,.id=NULL)
 }
 
