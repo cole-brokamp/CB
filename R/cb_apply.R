@@ -70,23 +70,11 @@
 #' # set .id to NULL to supress the addition of the id columns
 #' cb_apply(X,fun.,.id=NULL)
 
-cb_apply <- function(X,FUN.,output='data.frame',fill=TRUE,
-                     # names='row.names',
-                     pb=TRUE,.id='id',
-                     parallel=FALSE,num.cores=NULL,...){
+cb_apply <- function(X,FUN.,fill=TRUE,.id='id',output='data.frame',
+                     pb=TRUE,parallel=FALSE,num.cores=NULL,...){
 
   stopifnot(output %in% c('data.frame','list'),
             num.cores > 0 | is.null(num.cores))
-            # is.character(names))
-
-  # figure out way to name output column in data.frame if already doesn't return a data.frame
-  # FUN <- function(x,...) {
-  #   outtt <- FUN.(x,...)
-  #   if (is.data.frame(outtt)) return(outtt)
-  #   if (!is.data.frame(outtt)) outtt <- as.data.frame(outtt)
-  #   names(outtt) <- paste0('V',1:ncol(outtt))
-  #   return(outtt)
-  # }
 
   FUN <- FUN.
 
