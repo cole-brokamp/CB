@@ -10,13 +10,14 @@ My personal R package. Install this package within `R` by running `devtools::ins
 #### Highlighted functions:
 
 - `cb_apply` - custom wrapper for sapply/lapply that returns an organized and properly named data.frame as a result. Also uses progress bars to update users on computation process, even when using parallel processing!
-- `getPackages` - takes a package name and returns a list of its dependencies; useful for downloading source files of packages to install on a separate server running R where internet access is blocked
+- `SPapply` - an `sapply` for `sp` spatial objects
+- `switchv` - a vectorized version of `switch`
+- `pretty_p` - pretty printing of p-values
+- `percent` - pretty printing of decimals as percents
 - `LatLongToFIPS` - takes lat/lon coordinate and returns the FIPS code by calling the Census Block Conversion API
 - `ORGetter` - returns a nicely formatted table of odds ratios from a logistic regression model
 - `save_pdf` - save graphics on current device to a pdf
-- `SPapply` - an `sapply` for `sp` spatial objects
-- `tableSummary` - make your "Table 1" for your next manuscript
-- `tableTest` - make your "Table 2" for your next manuscript
+
 
 #### Non-function features:
 
