@@ -4,4 +4,3 @@ warnings_are_errors: false
 sudo: true
 os:
   - linux
-  - osx
