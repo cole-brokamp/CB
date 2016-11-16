@@ -45,11 +45,11 @@ mclapply_pb <- function(X, FUN, ...,
     }
   }
   tryCatch({
-    result <- parallel::mclapply(X, function(...) {
-      res <- FUN(...)
+    result <- parallel::mclapply(X, function(.x,...) {
+      res <- FUN(.x,...)
       if (mc.progress) writeBin(1, f)
       res
-    },
+    },...,
     mc.preschedule = mc.preschedule, mc.set.seed = mc.set.seed,
     mc.silent = mc.silent, mc.cores = mc.cores,
     mc.cleanup = mc.cleanup, mc.allow.recursive = mc.allow.recursive
