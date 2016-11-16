@@ -133,7 +133,7 @@ cb_apply <- function(X,FUN.,fill=TRUE,.id='id',output='data.frame',
       }
       tmp <- parallel::mclapply(1:n,wrapFUN,...,mc.cores=num.cores)
     } else {
-      tmp <- mclapply_pb(X,FUN,mccores=num.cores,...)
+      tmp <- mclapply_pb(X,FUN,...,mc.cores=num.cores)
     }
   }
 
