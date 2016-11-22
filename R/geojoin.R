@@ -9,8 +9,6 @@
 #'
 #' @return spatial data frame
 #' @export
-#'
-#' @examples
 geojoin <- function(spatial_data,data_frame,by_sp,by_df) {
   spatial_data@data <- data.frame(spatial_data@data,
                                   data_frame[match(spatial_data@data[[by_sp]],
