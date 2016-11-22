@@ -13,7 +13,8 @@ Imports:
     plyr,
     rmarkdown,
     rstudioapi,
-    progress
+    progress,
+    purrr
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 5.0.1

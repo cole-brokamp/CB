@@ -10,7 +10,8 @@ cb_apply(X, FUN., fill = TRUE, .id = "id", output = "data.frame",
 \arguments{
 \item{X}{List of objects to apply over}
 
-\item{FUN.}{Function to apply}
+\item{FUN.}{Function to apply; allows for compact anonymous functions (see
+?purrr::as_function) for details}
 
 \item{fill}{(defaults to TRUE) use plyr::rbind.fill to fill in missing
 columns when rbinding together results}

@@ -39,7 +39,8 @@
 #' updates.
 #'
 #' @param X List of objects to apply over
-#' @param FUN. Function to apply
+#' @param FUN. Function to apply; allows for compact anonymous functions (see
+#'   ?purrr::as_function) for details
 #' @param output Output type. Defaults to 'data.frame', but can also be set to
 #'   'list' to suppress rbinding of the list.
 #' @param parallel logical; use parallel processing?
@@ -93,7 +94,7 @@ cb_apply <- function(X,FUN.,fill=TRUE,.id='id',output='data.frame',
   stopifnot(output %in% c('data.frame','list'),
             num.cores > 0 | is.null(num.cores))
 
-  FUN <- FUN.
+  FUN <- purrr::as_function(FUN.)
 
   n <- length(X)
   if (!is.vector(X) || is.object(X)) X <- as.list(X)
