@@ -100,7 +100,7 @@ cb_apply <- function(X,FUN.,fill=TRUE,.id='id',output='data.frame',
     FUN <- memoise::memoise(FUN,cache=fc)
   }
 
-  if (error.na) FUN <- possibly(FUN,otherwise=NA,quiet=FALSE)
+  if (error.na) FUN <- purrr::possibly(FUN,otherwise=NA,quiet=FALSE)
 
   n <- length(X)
   if (!is.vector(X) || is.object(X)) X <- as.list(X)
