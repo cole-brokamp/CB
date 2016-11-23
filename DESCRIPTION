@@ -14,7 +14,9 @@ Imports:
     rmarkdown,
     rstudioapi,
     progress,
-    purrr
+    purrr,
+    memoise
+Remotes: hadley/memoise
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 5.0.1
