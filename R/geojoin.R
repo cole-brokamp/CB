@@ -14,5 +14,7 @@ geojoin <- function(spatial_data,data_frame,by_sp,by_df) {
                                   data_frame[match(spatial_data@data[[by_sp]],
                                                    data_frame[[by_df]]), ],
                                   check.names=FALSE,stringsAsFactors=FALSE)
+  # remove duplicated column IDs if joined on same name variable
+  if (by_sp == by_df) spatial_data@data[, !duplicated(names(spatial_data@data), fromLast = TRUE)]
   return(spatial_data)
 }
