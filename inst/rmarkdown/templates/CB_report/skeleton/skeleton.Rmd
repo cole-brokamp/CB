@@ -8,8 +8,10 @@ output:
     highlight: pygments
     toc: yes
     toc_float: yes
+    df_print: kable
   pdf_document:
     fig_caption: yes
+    df_print: kable
 fontsize: 10pt
 geometry: margin=0.5in
 header-includes:
