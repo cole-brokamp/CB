@@ -157,7 +157,7 @@ cb_apply <- function(X,FUN.,fill=TRUE,.id='id',output='data.frame',
     if (all(hn)) nms <- names(X)
 
     # if has_name returns all FALSE, create names
-    if (all(!hn)) nms <- make.names(1:n)
+    if (all(!hn)) nms <- make_names(1:n)
 
     # if has_name returns some TRUE, create names where needed
     if ( (sum(hn)) > 0 & (sum(hn) < n) ) nms <- make_names(X)
