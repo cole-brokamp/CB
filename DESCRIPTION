@@ -7,8 +7,6 @@ Depends:
     R (>= 3.1.2)
 Imports:
     parallel,
-    XML,
-    RCurl,
     pbapply,
     plyr,
     rmarkdown,
