@@ -15,6 +15,7 @@
 
 
 tableTest <- function(x,group,digits.mean=2,digits.percentage=0){
+  .Deprecated(msg='tableSummary is deprecated but is maintained here for backwards compatability.\nConsider using tidyverse instead.')
   stopifnot(class(x) %in% c("factor","numeric","integer",'ordered'))
   stopifnot(class(group) %in% c('factor','ordered'))
   tmp <- data.frame(x,group)
