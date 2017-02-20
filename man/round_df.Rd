@@ -4,7 +4,7 @@
 \alias{round_df}
 \title{round all numeric columns in a data.frame}
 \usage{
-round_df(x, digits)
+round_df(x, digits = 2)
 }
 \arguments{
 \item{x}{data.frame}
