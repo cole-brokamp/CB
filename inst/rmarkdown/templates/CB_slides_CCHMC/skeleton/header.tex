@@ -12,17 +12,17 @@
 \definecolor{cchmc_grey}{RGB}{67,69,72}
 
 \setbeamercolor{normal text}{fg=cchmc_grey}
-\setbeamercolor{title}{fg=cchmc_purple}
-\setbeamercolor{section in toc}{fg=cchmc_purple}
-\setbeamercolor{subsection in toc}{fg=cchmc_purple}
+\setbeamercolor{title}{fg=cchmc_darkblue}
+\setbeamercolor{section in toc}{fg=cchmc_darkblue}
+\setbeamercolor{subsection in toc}{fg=cchmc_darkblue}
 \setbeamercolor{section in head/foot}{fg=cchmc_grey}
 \setbeamerfont{headline}{size=\scriptsize}
 \setbeamerfont{section in head/foot}{size=\scriptsize}
 \setbeamerfont{subsection in head/foot}{size=\normalsize}
 \setbeamercolor{subsection in head/foot}{fg=cchmc_grey}
-\setbeamercolor{frametitle}{fg=cchmc_purple}
+\setbeamercolor{frametitle}{fg=cchmc_darkblue}
 \setbeamerfont{frametitle}{size=\large}
-\setbeamercolor{local structure}{fg=cchmc_purple}
+\setbeamercolor{local structure}{fg=cchmc_darkblue}
 \setbeamerfont{footnote}{size=\tiny}
 \beamertemplatenavigationsymbolsempty
 \useinnertheme{circles}
@@ -37,11 +37,13 @@
 % \def\beamer@subsectionentry#1#2#3#4#5{\advance\beamer@xpos by1\relax}%
 % \makeatother
 
+\usepackage{appendixnumberbeamer}
+
 % display ToC with highlighted current section at the begin of each section
 \AtBeginSection[]
 {
   \begin{frame}
-    \frametitle{Table of Contents}
+    \frametitle{Table of contents}
     \tableofcontents[currentsection,
     sectionstyle=show/shaded,
     subsectionstyle=hide/hide/hide]
@@ -49,9 +51,14 @@
 }
 \AtBeginSubsection[]{}
 
-
-
+\usepackage[export]{adjustbox}
 
 % \usepackage[table]{xcolor}
 % \definecolor{Gray}{gray}{0.85}
 % \rowcolors{2}{white}{Gray}
+
+% allow spaces in figure filenames
+\usepackage[space]{grffile}
+
+% use triangle for itemized lists
+\setbeamertemplate{itemize item}[triangle]
