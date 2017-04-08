@@ -4,17 +4,20 @@
 \alias{percent}
 \title{paste a decimal as a pretty percent}
 \usage{
-percent(x, digits = 1)
+percent(x, digits = 1, paren = FALSE)
 }
 \arguments{
 \item{x}{decimal}
 
 \item{digits}{number of digits to show after the decimal place}
+
+\item{paren}{logical; print with surrounding parentheses?}
 }
 \description{
 paste a decimal as a pretty percent
 }
 \examples{
 percent(0.6770471)
+percent(0.6770471, digits=0, paren=TRUE)
 }
 
