@@ -13,7 +13,8 @@ Imports:
     rstudioapi,
     progress,
     purrr,
-    memoise
+    memoise,
+    DT
 Remotes: hadley/memoise
 License: MIT + file LICENSE
 LazyData: true
