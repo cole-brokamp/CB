@@ -4,7 +4,7 @@
 \alias{save_pdf}
 \title{save_pdf}
 \usage{
-save_pdf(file, width = 11, height = 8.5)
+save_pdf(file, width = 11, height = 8.5, jpg = FALSE)
 }
 \arguments{
 \item{file}{filename to save the image}
@@ -12,6 +12,8 @@ save_pdf(file, width = 11, height = 8.5)
 \item{width}{width of pdf image}
 
 \item{height}{height of pdf image}
+
+\item{jpg}{convert to 300 dpi .jpg file after pdf save?}
 }
 \description{
 Copies the graphics contents of current device to PDF (a wrapper for \code{dev2.pdf}). Default size is 8.5 x 11 in landscape mode.

@@ -18,7 +18,7 @@ My personal R package. Install this package within `R` by running `remotes::inst
 - `pretty_p` - pretty printing of p-values
 - `percent` - pretty printing of decimals as percents
 - `ORGetter` - returns a nicely formatted table of odds ratios from a logistic regression model
-- `save_pdf` - save graphics on current device to a pdf
+- `save_pdf` - save graphics on current device to a pdf, also can save 300 DPI jpeg if imagemagick is installed on system
 
 
 #### Non-function features:
