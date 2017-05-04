@@ -14,7 +14,9 @@ Imports:
     progress,
     purrr,
     memoise,
-    DT
+    DT,
+    listviewer
+Remotes: timelyportfolio/listviewer
 License: MIT + file LICENSE
 LazyData: true
 RoxygenNote: 5.0.1
