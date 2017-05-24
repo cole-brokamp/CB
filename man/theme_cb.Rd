@@ -17,10 +17,5 @@ Custom CB ggplot2 theme
 \examples{
 library(ggplot2)
 ggplot(mtcars, aes(wt, mpg)) +
-geom_point() +
- labs(title = "A Plot",
-      subtitle = "Look, a subtitle!") +
- theme_cb()
-
 }
 
