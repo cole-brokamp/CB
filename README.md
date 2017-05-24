@@ -10,6 +10,7 @@ My personal R package. Install this package within `R` by running `remotes::inst
 #### Highlighted functions:
 
 - `cb_apply` - custom wrapper for sapply/lapply that returns an organized and properly named data.frame as a result. Also uses progress bars to update users on computation process, even when using parallel processing! Also includes intelligent error handling and locally caching the results for longer computations.
+- `theme_cb` - custom theme for ggplot2
 - `round_df` - round all numeric columns in a data.frame
 - `cchmc_colors` - access the Cincinnati Children's Hospital Medical Center color palette
 - `geojoin` - join a data.frame to a spatial object
