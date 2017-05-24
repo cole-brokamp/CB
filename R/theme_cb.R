@@ -6,6 +6,7 @@
 #' @export
 #'
 #' @examples
+#' library(ggplot2)
 #' ggplot(mtcars, aes(wt, mpg)) +
 #' geom_point() +
 #'  labs(title = "A Plot",
