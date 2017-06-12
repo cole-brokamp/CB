@@ -27,14 +27,14 @@
 #`   theme_cb()
 theme_cb <- function (base_size = 11, ...){
   out <- ggplot2::theme_light(base_family = "Arial", base_size = base_size)
-  out <- out + theme(panel.background = element_rect(fill = "white", colour = NA),
-                     panel.border = element_rect(fill = NA, colour = "grey20"),
-                     panel.grid.major = element_line(colour = "grey92"),
-                     panel.grid.minor = element_blank(),
-                     strip.background = element_rect(fill = "grey92", colour = "grey20"),
-                     strip.text = element_text(color='grey20'),
-                     legend.key = element_rect(fill = "white", colour = NA),
-                     complete = TRUE, ...)
+  out <- out + ggplot2::theme(panel.background = ggplot2::element_rect(fill = "white", colour = NA),
+                              panel.border = ggplot2::element_rect(fill = NA, colour = "grey20"),
+                              panel.grid.major = ggplot2::element_line(colour = "grey92"),
+                              panel.grid.minor = ggplot2::element_blank(),
+                              strip.background = ggplot2::element_rect(fill = "grey92", colour = "grey20"),
+                              strip.text = ggplot2::element_text(color='grey20'),
+                              legend.key = ggplot2::element_rect(fill = "white", colour = NA),
+                              complete = TRUE, ...)
   out$plot.title <- ggplot2::element_text(family = "Arial",
                                           face='bold',
                                           size = ggplot2::rel(1.2), hjust = 0, vjust = 1,
