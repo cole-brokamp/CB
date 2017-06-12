@@ -6,6 +6,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' library(ggplot2)
 #' ggplot(mtcars, aes(wt, mpg)) +
 #` geom_point() +
@@ -25,6 +26,7 @@
 #`   labs(title = "A Plot",
 #`        subtitle = "Look, a subtitle!") +
 #`   theme_cb()
+#' }
 theme_cb <- function (base_size = 11, ...){
   out <- ggplot2::theme_light(base_family = "Arial", base_size = base_size)
   out <- out + ggplot2::theme(panel.background = ggplot2::element_rect(fill = "white", colour = NA),
