@@ -28,7 +28,7 @@
 #`   theme_cb()
 #' }
 theme_cb <- function (base_size = 11, ...){
-  out <- ggplot2::theme_light(base_family = "Arial", base_size = base_size)
+  out <- ggplot2::theme_light(base_size = base_size)
   out <- out + ggplot2::theme(panel.background = ggplot2::element_rect(fill = "white", colour = NA),
                               panel.border = ggplot2::element_rect(fill = NA, colour = "grey20"),
                               panel.grid.major = ggplot2::element_line(colour = "grey92"),
@@ -37,12 +37,8 @@ theme_cb <- function (base_size = 11, ...){
                               strip.text = ggplot2::element_text(color='grey20'),
                               legend.key = ggplot2::element_rect(fill = "white", colour = NA),
                               complete = TRUE, ...)
-  out$plot.title <- ggplot2::element_text(family = "Arial",
-                                          face='bold',
+  out$plot.title <- ggplot2::element_text(face='bold',
                                           size = ggplot2::rel(1.2), hjust = 0, vjust = 1,
                                           margin = ggplot2::margin(b = base_size/2 * 1.2))
   out
 }
-
-
-
