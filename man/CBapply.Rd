@@ -30,4 +30,3 @@ names(X) <- LETTERS[1:10]
 CBapply(X,function(x) data.frame('mean'=mean(x)))
 }
 \keyword{CBapply}
-

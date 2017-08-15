@@ -29,4 +29,3 @@ ORGetter(logistic.model)
 }
 \keyword{CB}
 \keyword{OddsRatio}
-

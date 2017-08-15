@@ -20,4 +20,3 @@ plot(1:4,rep(1,4),col=cb_colors('cchmc'),pch=19,cex=5)
 plot(1:16,rep(1,16),col=cb_colors('web'),pch=19,cex=5)
 }
 \keyword{utilities}
-

@@ -27,4 +27,3 @@ CBapply(X,tableSummary,digits.mean=3,digits.percentage=2)
 \keyword{CB}
 \keyword{summary}
 \keyword{table}
-

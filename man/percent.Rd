@@ -20,4 +20,3 @@ paste a decimal as a pretty percent
 percent(0.6770471)
 percent(0.6770471, digits=0, paren=TRUE)
 }
-

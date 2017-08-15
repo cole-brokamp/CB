@@ -19,4 +19,3 @@ Interactive view of list structures with listviewer::jsonedit()
 \examples{
 htable(mtcars)
 }
-

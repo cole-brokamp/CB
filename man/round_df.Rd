@@ -17,4 +17,3 @@ rounded data.frame
 \description{
 round all numeric columns in a data.frame
 }
-

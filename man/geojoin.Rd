@@ -21,4 +21,3 @@ spatial data frame
 \description{
 modified from tigris::geo_join to not check data.frame names or coerce strings to factors
 }
-

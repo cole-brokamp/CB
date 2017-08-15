@@ -23,4 +23,3 @@ download.packages(packages, destdir='.',type='source')
 }
 }
 \keyword{CBapply}
-

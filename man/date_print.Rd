@@ -15,4 +15,3 @@ Print the current date in a pretty format
 \examples{
 date_print()
 }
-

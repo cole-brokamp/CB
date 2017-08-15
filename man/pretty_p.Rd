@@ -19,4 +19,3 @@ pretty_p(0.6770471)
 pretty_p(0.00034)
 pretty_p(0.00034,digits=4)
 }
-

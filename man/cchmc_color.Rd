@@ -30,4 +30,3 @@ plot(iris$Sepal.Length,iris$Sepal.Width,pch=19,
                                                             'versicolor' = 2,
                                                             'virginica' = 3))))
 }
-

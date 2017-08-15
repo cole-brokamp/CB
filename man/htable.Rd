@@ -19,4 +19,3 @@ Create a quick html table using my favorites options for DT::datatable()
 \examples{
 htable(mtcars)
 }
-

@@ -23,4 +23,3 @@ data.frame of all results from function applied to sp.object
 \description{
 *apply function for spatial point objects
 }
-

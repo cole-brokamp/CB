@@ -28,4 +28,3 @@ CBapply(X[ ,c('some.continuous','some.factor')],tableTest,group=X$some.other.fac
 \keyword{CB}
 \keyword{table}
 \keyword{test}
-

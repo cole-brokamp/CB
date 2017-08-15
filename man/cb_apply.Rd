@@ -107,4 +107,3 @@ fun. <- function(x) {
 }
 cb_apply(X,fun.)
 }
-
