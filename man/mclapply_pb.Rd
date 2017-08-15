@@ -4,9 +4,7 @@
 \alias{mclapply_pb}
 \title{Wrapper around mclapply to track progress}
 \usage{
-mclapply_pb(X, FUN, ..., mc.preschedule = TRUE, mc.set.seed = TRUE,
-  mc.silent = FALSE, mc.cores = getOption("mc.cores", 2L),
-  mc.cleanup = TRUE, mc.allow.recursive = TRUE, mc.progress = TRUE)
+mclapply_pb(X, FUN, mc.cores = getOption("mc.cores", 2L))
 }
 \arguments{
 \item{X}{a vector (atomic or list) or an expressions vector. Other
@@ -15,24 +13,9 @@ objects (including classed objects) will be coerced by
 
 \item{FUN}{the function to be applied to}
 
-\item{...}{optional arguments to ‘FUN’}
-
-\item{mc.preschedule}{see mclapply}
-
-\item{mc.set.seed}{see mclapply}
-
-\item{mc.silent}{see mclapply}
-
-\item{mc.cores}{see mclapply}
-
-\item{mc.cleanup}{see mclapply}
-
-\item{mc.allow.recursive}{see mclapply}
-
-\item{mc.progress}{track progress?}
+\item{mc.cores}{number of cores to use}
 }
 \description{
 Doesn't work in RStudio!
 Based on http://stackoverflow.com/questions/10984556
 }
-

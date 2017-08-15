@@ -8,6 +8,7 @@ Depends:
 Imports:
     parallel,
     pbapply,
+    pbmcapply,
     plyr,
     rmarkdown,
     rstudioapi,
@@ -19,4 +20,4 @@ Imports:
 Remotes: timelyportfolio/listviewer
 License: MIT + file LICENSE
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
