@@ -9,17 +9,16 @@ My personal R package. Install this package within `R` by running `remotes::inst
 
 #### Highlighted functions:
 
-- `cb_apply` - custom wrapper for sapply/lapply that returns an organized and properly named data.frame as a result. Also uses progress bars to update users on computation process, even when using parallel processing! Also includes intelligent error handling and locally caching the results for longer computations.
+- `mappp` - custom wrapper for `purrr::map()` that includes extras like parallel computation, progress bars, error handling, and local/remote caching
 - `theme_cb` - custom theme for ggplot2
 - `round_df` - round all numeric columns in a data.frame
 - `cchmc_colors` - access the Cincinnati Children's Hospital Medical Center color palette
 - `geojoin` - join a data.frame to a spatial object
-- `SPapply` - an `sapply` for `sp` spatial objects
-- `switchv` - a vectorized version of `switch`
 - `pretty_p` - pretty printing of p-values
 - `percent` - pretty printing of decimals as percents
-- `ORGetter` - returns a nicely formatted table of odds ratios from a logistic regression model
 - `save_pdf` - save graphics on current device to a pdf, also can save 300 DPI jpeg if imagemagick is installed on system
+- `htable` - quickly interactively view a data.frame object
+- `hlist` - quickly interactively view nested list objects
 
 
 #### Non-function features:
