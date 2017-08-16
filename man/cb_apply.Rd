@@ -74,6 +74,7 @@ to the file `.process`. Use a shell and `tail -f .progress` to see the
 updates.
 }
 \examples{
+\dontrun{
 X <- as.data.frame(matrix(runif(100),ncol=10))
 
 fun. <- function(x) {
@@ -90,7 +91,8 @@ fun. <- function(x) {
 
 cb_apply(X,fun.)
 
-# when setting names of input object, function will attempt to assign them to the output in a new column
+# when setting names of input object, function will attempt to assign them to
+# the output in a new column
 names(X) <- LETTERS[1:10]
 cb_apply(X,fun.,output='list')
 cb_apply(X,fun.)
@@ -106,4 +108,5 @@ fun. <- function(x) {
   data.frame('stat'=c(mean(x),median(x)))
 }
 cb_apply(X,fun.)
+}
 }

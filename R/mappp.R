@@ -30,7 +30,7 @@
 #' @param quiet logical, suppress error messages until the end of calculation? or show them as they occur
 #' @export
 #' @examples
-#' #' \dontrun{
+#' \dontrun{
 #' X <- list('x' = 100, 'y' = 'a', 'z' = 200)
 #' slow_log <- function(.x) {Sys.sleep(0.5); log(.x)}
 #' # by default returns NA on error
@@ -52,7 +52,6 @@ mappp <- function(X, FUN.,
   FUN <- purrr::as_mapper(FUN.)
 
   if (cache) {
-    # library(memoise)
     fc <- memoise::cache_filesystem(cache.name)
     FUN <- memoise::memoise(FUN,cache=fc)
   }

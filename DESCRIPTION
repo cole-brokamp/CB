@@ -2,7 +2,7 @@ Package: CB
 Title: Cole Brokamp's Personal Functions
 Version: 0.2
 Authors@R: person("Cole", "Brokamp", ,"cole.brokamp@gmail.com", role = c("aut", "cre"))
-Description: Cole's personal R functions
+Description: A random gathering of my own R functions used frequently enough to include in a package rather than source individually.
 Depends:
     R (>= 3.1.2)
 Imports:

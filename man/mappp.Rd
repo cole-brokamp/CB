@@ -47,7 +47,7 @@ to the file `.process`. Use a shell and `tail -f .progress` to see the
 updates.
 }
 \examples{
-#' \dontrun{
+\dontrun{
 X <- list('x' = 100, 'y' = 'a', 'z' = 200)
 slow_log <- function(.x) {Sys.sleep(0.5); log(.x)}
 # by default returns NA on error

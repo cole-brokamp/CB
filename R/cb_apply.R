@@ -53,6 +53,7 @@
 #' @param ... Additional arguments to the function
 #' @export
 #' @examples
+#' \dontrun{
 #' X <- as.data.frame(matrix(runif(100),ncol=10))
 #'
 #' fun. <- function(x) {
@@ -69,7 +70,8 @@
 #'
 #' cb_apply(X,fun.)
 #'
-#' # when setting names of input object, function will attempt to assign them to the output in a new column
+#' # when setting names of input object, function will attempt to assign them to
+#' # the output in a new column
 #' names(X) <- LETTERS[1:10]
 #' cb_apply(X,fun.,output='list')
 #' cb_apply(X,fun.)
@@ -85,6 +87,7 @@
 #'   data.frame('stat'=c(mean(x),median(x)))
 #' }
 #' cb_apply(X,fun.)
+#' }
 
 cb_apply <- function(X,FUN.,fill=TRUE,.id='id',output='data.frame',
                      pb=TRUE,parallel=FALSE,cache=FALSE,error.na=TRUE,num.cores=NULL,...){
