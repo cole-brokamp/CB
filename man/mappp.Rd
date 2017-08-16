@@ -21,6 +21,8 @@ mappp(X, FUN., parallel = FALSE, cache = FALSE, cache.name = "cache",
 
 \item{error.value}{(defaults to NA) use purrr::possibly to replace errors with this value instead of interrupting the process; set to NULL to not use error handling and instead interrupt the calculation}
 
+\item{quiet}{logical, suppress error messages until the end of calculation? or show them as they occur}
+
 \item{num.cores}{The number of cores used for parallel processing.  Can be
 specified as an integer, or it will guess the number of cores available
 with detectCores(). If parallel is FALSE, the input here will be set to 1.}
@@ -45,6 +47,7 @@ to the file `.process`. Use a shell and `tail -f .progress` to see the
 updates.
 }
 \examples{
+#' \dontrun{
 X <- list('x' = 100, 'y' = 'a', 'z' = 200)
 slow_log <- function(.x) {Sys.sleep(0.5); log(.x)}
 # by default returns NA on error
@@ -54,4 +57,5 @@ mappp(X, slow_log, error.value=NULL)
 # showing error messages when they occur rather than afterwards can be useful
 # but will cause problems with error bar displays
 mappp(X, slow_log, quiet=FALSE)
+}
 }

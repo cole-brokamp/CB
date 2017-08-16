@@ -1,4 +1,4 @@
-#' custom *apply function
+#' deprecated! use mappp instead
 #'
 #' Function designed to handle anything that lapply can but can specify parallel
 #' processing, progress bars, output format and more.
@@ -88,6 +88,8 @@
 
 cb_apply <- function(X,FUN.,fill=TRUE,.id='id',output='data.frame',
                      pb=TRUE,parallel=FALSE,cache=FALSE,error.na=TRUE,num.cores=NULL,...){
+
+  .Deprecated('mappp','CB','CBapply is deprecated but is maintained here for backwards compatability.\nConsider using CB::mappp instead.')
 
   stopifnot(output %in% c('data.frame','list'),
             num.cores > 0 | is.null(num.cores))

@@ -2,7 +2,7 @@
 % Please edit documentation in R/cb_apply.R
 \name{cb_apply}
 \alias{cb_apply}
-\title{custom *apply function}
+\title{deprecated! use mappp instead}
 \usage{
 cb_apply(X, FUN., fill = TRUE, .id = "id", output = "data.frame",
   pb = TRUE, parallel = FALSE, cache = FALSE, error.na = TRUE,
