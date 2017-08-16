@@ -27,8 +27,10 @@
 #' @param cache defaults to FALSE, which means no cache used. If TRUE, cache the results locally in a folder named according to \code{cache.name} using the memoise package
 #' @param cache.name a character string to use a custom cache folder name (e.g. "my_cache"); defaults to "cache"
 #' @param error.value (defaults to NA) use purrr::possibly to replace errors with this value instead of interrupting the process; set to NULL to not use error handling and instead interrupt the calculation
+#' @param quiet logical, suppress error messages until the end of calculation? or show them as they occur
 #' @export
 #' @examples
+#' #' \dontrun{
 #' X <- list('x' = 100, 'y' = 'a', 'z' = 200)
 #' slow_log <- function(.x) {Sys.sleep(0.5); log(.x)}
 #' # by default returns NA on error
@@ -38,6 +40,7 @@
 #' # showing error messages when they occur rather than afterwards can be useful
 #' # but will cause problems with error bar displays
 #' mappp(X, slow_log, quiet=FALSE)
+#' }
 
 mappp <- function(X, FUN.,
                   parallel=FALSE,
