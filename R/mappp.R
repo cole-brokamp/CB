@@ -3,7 +3,7 @@
 #' This function is a wrapper around purrr::map() with some extras on top,
 #' including parallel computation, progress bar, error handling, and result caching.
 #'
-#' It is designed for long computations and as such it always uses a progress bar,
+#' \code{mappp} is designed for long computations and as such it always uses a progress bar,
 #' and always returns a list. Long computations shouldn't worry about being type
 #' strict; instead, extract results in the right type from the results list.
 #'
@@ -19,7 +19,7 @@
 #'
 #' @param X List of objects to apply over
 #' @param FUN. Function to apply; allows for compact anonymous functions (see
-#'   ?purrr::as_mapper() for details
+#'   \code{purrr::as_mapper()} for details)
 #' @param parallel logical; use parallel processing?
 #' @param num.cores The number of cores used for parallel processing.  Can be
 #'   specified as an integer, or it will guess the number of cores available

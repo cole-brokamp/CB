@@ -11,7 +11,7 @@ mappp(X, FUN., parallel = FALSE, cache = FALSE, cache.name = "cache",
 \item{X}{List of objects to apply over}
 
 \item{FUN.}{Function to apply; allows for compact anonymous functions (see
-?purrr::as_mapper() for details}
+\code{purrr::as_mapper()} for details)}
 
 \item{parallel}{logical; use parallel processing?}
 
@@ -32,7 +32,7 @@ This function is a wrapper around purrr::map() with some extras on top,
 including parallel computation, progress bar, error handling, and result caching.
 }
 \details{
-It is designed for long computations and as such it always uses a progress bar,
+\code{mappp} is designed for long computations and as such it always uses a progress bar,
 and always returns a list. Long computations shouldn't worry about being type
 strict; instead, extract results in the right type from the results list.
 
