@@ -5,9 +5,8 @@ Authors@R: person("Cole", "Brokamp", ,"cole.brokamp@gmail.com", role = c("aut", 
 Description: A random gathering of my own R functions used frequently enough to include in a package rather than source individually.
 Depends:
     R (>= 3.1.2)
-Suggests:
-    ggplot2
 Imports:
+    ggplot2,
     parallel,
     pbapply,
     pbmcapply,
