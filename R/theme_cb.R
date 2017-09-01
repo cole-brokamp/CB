@@ -42,3 +42,20 @@ theme_cb <- function (base_size = 11, ...){
                                           margin = ggplot2::margin(b = base_size/2 * 1.2))
   out
 }
+
+#' ggplot2 theme for sf maps
+#'
+#' @param ... other arguments passed to \code{CB::theme_cb()}
+#'
+#' @export
+#'
+theme_map <- function(...){
+  theme_cb(...) +
+  theme(axis.ticks = element_blank(),
+        axis.text = element_blank(),
+        axis.title = element_blank(),
+        rect = element_blank(),
+        line = element_blank(),
+        plot.margin = margin(1, 1, 1, 1, 'cm'),
+        legend.key.height = unit(1, "cm"), legend.key.width = unit(0.3, "cm"))
+}
