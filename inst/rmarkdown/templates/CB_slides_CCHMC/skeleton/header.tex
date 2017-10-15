@@ -1,5 +1,5 @@
-% \institute{Department of Biostatistics and Epidemiology\\Cincinnati Children's Hospital Medical Center}
-\titlegraphic{\includegraphics[height=1.1cm]{CCHMC-LOGO.png}}
+\institute{Division of Biostatistics and Epidemiology\\Cincinnati Children's Hospital Medical Center}
+\titlegraphic{\includegraphics[height=1.1cm]{figs/CCHMC-LOGO.png}}
 \usetheme{default}
 
 \definecolor{cchmc_blue}{RGB}{138,198,213}
@@ -43,7 +43,7 @@
 \AtBeginSection[]
 {
   \begin{frame}
-    \frametitle{Table of contents}
+    \frametitle{Table of Contents}
     \tableofcontents[currentsection,
     sectionstyle=show/shaded,
     subsectionstyle=hide/hide/hide]
@@ -53,12 +53,32 @@
 
 \usepackage[export]{adjustbox}
 
-% \usepackage[table]{xcolor}
-% \definecolor{Gray}{gray}{0.85}
-% \rowcolors{2}{white}{Gray}
 
 % allow spaces in figure filenames
 \usepackage[space]{grffile}
 
 % use triangle for itemized lists
 \setbeamertemplate{itemize item}[triangle]
+
+% \usepackage[table]{xcolor}
+% \definecolor{Gray}{gray}{0.85}
+% \rowcolors{2}{white}{Gray}
+
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cchmc_grey,
+    filecolor=cchmc_darkblue,
+    urlcolor=cchmc_darkblue,
+}
+
+\urlstyle{same}
+
+% use for icons in TY slide
+\usepackage{fontawesome}
+% ... and also for using as footnote markers
+\renewcommand{\thefootnote}{\faStickyNoteO}
+% \faStar
+% \faShare
+% \faStickyNoteO
