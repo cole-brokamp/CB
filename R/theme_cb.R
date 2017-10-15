@@ -56,6 +56,7 @@ theme_map <- function(...){
         axis.title = element_blank(),
         rect = element_blank(),
         line = element_blank(),
+        panel.grid = element_blank(),
         plot.margin = margin(1, 1, 1, 1, 'cm'),
         legend.key.height = unit(1, "cm"), legend.key.width = unit(0.3, "cm"))
 }
