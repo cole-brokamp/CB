@@ -97,7 +97,7 @@ cb_apply <- function(X,FUN.,fill=TRUE,.id='id',output='data.frame',
   stopifnot(output %in% c('data.frame','list'),
             num.cores > 0 | is.null(num.cores))
 
-  FUN <- purrr::as_function(FUN.)
+    FUN <- purrr::as_mapper(FUN.)
 
   if (cache) {
     library(memoise)
