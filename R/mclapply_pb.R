@@ -1,18 +1,14 @@
-##------------------------------------------------------------------------------
 ##' Wrapper around mclapply to track progress
 ##'
 ##' Doesn't work in RStudio!
 ##' Based on http://stackoverflow.com/questions/10984556
 ##'
-##' @param X         a vector (atomic or list) or an expressions vector. Other
-##'                  objects (including classed objects) will be coerced by
-##'                  ‘as.list’
-##' @param FUN       the function to be applied to
+##' @param X a vector (atomic or list) or an expressions vector. Other
+##'   objects (including classed objects) will be coerced by ‘as.list’
+##' @param FUN the function to be applied to
 ##' @param mc.cores number of cores to use
-##'
 mclapply_pb <- function(X, FUN, mc.cores = getOption("mc.cores", 2L)){
     if (Sys.getenv("RSTUDIO") == "1") message("progress bar doesn't work in RStudio!")
-    library(parallel)
     if (!is.vector(X) || is.object(X)) X <- as.list(X)
     n <- length(X)
     f <- fifo(tempfile(), open="w+b", blocking=T)

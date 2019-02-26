@@ -1,24 +1,24 @@
 Package: CB
-Title: Cole Brokamp's Personal Functions
-Version: 0.2
+Title: CB
+Version: 0.3
 Authors@R: person("Cole", "Brokamp", ,"cole.brokamp@gmail.com", role = c("aut", "cre"))
-Description: A random gathering of my own R functions used frequently enough to include in a package rather than source individually.
+Description: A collection of my personal utility functions.
 Depends:
     R (>= 3.1.2)
 Imports:
-    ggplot2,
-    parallel,
-    pbapply,
-    pbmcapply,
-    plyr,
-    rmarkdown,
-    rstudioapi,
-    progress,
+    grDevices,
+    listviewer,
+    DT,
     purrr,
     memoise,
-    DT,
-    listviewer
+    parallel,
+    progress,
+    pbmcapply,
+    pbapply,
+    scales,
+    plyr
+Suggests: ggplot2
 Remotes: timelyportfolio/listviewer
 License: MIT + file LICENSE
 LazyData: true
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.1

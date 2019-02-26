@@ -51,12 +51,12 @@ theme_cb <- function (base_size = 11, ...){
 #'
 theme_map <- function(...){
   theme_cb(...) +
-  theme(axis.ticks = element_blank(),
-        axis.text = element_blank(),
-        axis.title = element_blank(),
-        rect = element_blank(),
-        line = element_blank(),
-        panel.grid = element_blank(),
-        plot.margin = margin(1, 1, 1, 1, 'cm'),
-        legend.key.height = unit(1, "cm"), legend.key.width = unit(0.3, "cm"))
+  ggplot2::theme(axis.ticks = ggplot2::element_blank(),
+        axis.text = ggplot2::element_blank(),
+        axis.title = ggplot2::element_blank(),
+        rect = ggplot2::element_blank(),
+        line = ggplot2::element_blank(),
+        panel.grid = ggplot2::element_blank(),
+        plot.margin = ggplot2::margin(1, 1, 1, 1, 'cm'),
+        legend.key.height = ggplot2::unit(1, "cm"), legend.key.width = ggplot2::unit(0.3, "cm"))
 }
